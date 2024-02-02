@@ -1,0 +1,25 @@
+---
+title: "Welcome to Intro to R for PhD Students in Education"
+---
+
+Hello, I'm Rony Rodriguez-Ramirez, and this website is my personal project to provide PhD students in Education with tutorials, resources, and tools aimed at enhancing their research and academic skills. This initiative is designed to support your journey through the PhD program with practical and accessible learning materials.
+
+## About This Project
+
+This project is a work in progress, and I am constantly looking to update and improve the content. I welcome any suggestions, feedback, or contributions you might have.
+
+## Tutorials
+
+I've crafted these tutorials to cater to a broad spectrum of needs, from the basics of statistical analysis using R, to more nuanced discussions on quantitative research methodologies. Here are a few highlights:
+
+- To complete
+
+## Additional Resources
+
+- To complete
+
+Thank you for visiting, and I hope you find these resources helpful on your academic path!
+
+<footer>
+<p align="center">© 2024 Rony Rodriguez-Ramirez </p>
+</footer>
