@@ -33,7 +33,7 @@ A `tibble` is a modern reimagining of the data frame, keeping what time has prov
 my_tibble <- tibble(
   id = 1:5,
   name = c("Emma", "Rony", "Jostin", "David", "Alex"),
-  score = c(90, 85, 88, 95, 80)
+  score = c(90, 80, 88, 100, 100)
 )
 ```
 
@@ -49,10 +49,10 @@ my_tibble <- tibble(
 my_tribble <- tribble(
   ~id, ~name,    ~score,
   1,   "Emma",  90,
-  2,   "Rony",  85,
+  2,   "Rony",  80,
   3,   "Jostin", 88,
-  4,   "David",  95,
-  5,   "Alex",    80
+  4,   "David",  100,
+  5,   "Alex",    100
 )
 ```
 
@@ -110,7 +110,7 @@ students <- tibble(
 
 scores <- tibble(
   id = c(1, 2, 4),
-  score = c(88, 95, 75)
+  score = c(88, 80, 75)
 )
 ```
 

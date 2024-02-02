@@ -403,17 +403,17 @@ Levels: High Low Medium</code></pre>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>, <span class="st">"David"</span>, <span class="st">"Alex"</span>),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">95</span>, <span class="dv">80</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">80</span>, <span class="dv">88</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score
 1  1   Emma    90
-2  2   Rony    85
+2  2   Rony    80
 3  3 Jostin    88
-4  4  David    95
-5  5   Alex    80</code></pre>
+4  4  David   100
+5  5   Alex   100</code></pre>
 </div>
 </div>
 </section>
@@ -494,10 +494,10 @@ Levels: High Low Medium</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed
 1  1   Emma    90   TRUE
-2  2   Rony    85   TRUE
+2  2   Rony    80  FALSE
 3  3 Jostin    88   TRUE
-4  4  David    95   TRUE
-5  5   Alex    80  FALSE</code></pre>
+4  4  David   100   TRUE
+5  5   Alex   100   TRUE</code></pre>
 </div>
 </div>
 <p>This will add a new column passed to my_data_frame, where each row will have <code>TRUE</code> if the student’s score is 85 or higher, and <code>FALSE</code> otherwise.</p>
@@ -512,11 +512,11 @@ Levels: High Low Medium</code></pre>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized
-1  1   Emma    90   TRUE          0.4289820
-2  2   Rony    85   TRUE         -0.4647305
-3  3 Jostin    88   TRUE          0.0714970
-4  4  David    95   TRUE          1.3226945
-5  5   Alex    80  FALSE         -1.3584430</code></pre>
+1  1   Emma    90   TRUE         -0.1875229
+2  2   Rony    80  FALSE         -1.3595410
+3  3 Jostin    88   TRUE         -0.4219265
+4  4  David   100   TRUE          0.9844952
+5  5   Alex   100   TRUE          0.9844952</code></pre>
 </div>
 </div>
 <p>This operation creates a new column <code>score_standardized</code> where each student’s score is standardized.</p>
@@ -539,11 +539,11 @@ Levels: High Low Medium</code></pre>
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade
-1  1   Emma    90   TRUE          0.4289820     B
-2  2   Rony    85   TRUE         -0.4647305     C
-3  3 Jostin    88   TRUE          0.0714970     B
-4  4  David    95   TRUE          1.3226945     A
-5  5   Alex    80  FALSE         -1.3584430     C</code></pre>
+1  1   Emma    90   TRUE         -0.1875229     C
+2  2   Rony    80  FALSE         -1.3595410     C
+3  3 Jostin    88   TRUE         -0.4219265     C
+4  4  David   100   TRUE          0.9844952     B
+5  5   Alex   100   TRUE          0.9844952     B</code></pre>
 </div>
 </div>
 <p>In this example, <code>case_when()</code> is used to assign grades: “A” for standardized scores &gt;= 1, “B” for scores &gt;= 0 and &lt; 1, and “C” for scores &lt; 0. This illustrates how <code>mutate()</code> can be used to perform multiple transformations simultaneously, enhancing the readability and efficiency of your data manipulation code.</p>
@@ -563,7 +563,7 @@ Levels: High Low Medium</code></pre>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>average_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  mean_score
-1       87.6</code></pre>
+1       91.6</code></pre>
 </div>
 </div>
 <p>This code calculates the mean of the <code>score</code> column and stores the result in a new data frame called <code>average_score</code> with a single column <code>mean_score</code>.</p>
@@ -579,11 +579,11 @@ Levels: High Low Medium</code></pre>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade class
-1  1   Emma    90   TRUE          0.4289820     B     B
-2  2   Rony    85   TRUE         -0.4647305     C     A
-3  3 Jostin    88   TRUE          0.0714970     B     B
-4  4  David    95   TRUE          1.3226945     A     A
-5  5   Alex    80  FALSE         -1.3584430     C     B</code></pre>
+1  1   Emma    90   TRUE         -0.1875229     C     B
+2  2   Rony    80  FALSE         -1.3595410     C     A
+3  3 Jostin    88   TRUE         -0.4219265     C     B
+4  4  David   100   TRUE          0.9844952     B     A
+5  5   Alex   100   TRUE          0.9844952     B     B</code></pre>
 </div>
 </div>
 <p>This code adds a new column <code>class</code> to <code>my_data_frame</code>, where students with an even id are assigned to class “A” and students with an odd id are assigned to class “B”.</p>
@@ -598,8 +598,8 @@ Levels: High Low Medium</code></pre>
 <pre><code># A tibble: 2 × 2
   class mean_score
   &lt;chr&gt;      &lt;dbl&gt;
-1 A             90
-2 B             86</code></pre>
+1 A           90  
+2 B           92.7</code></pre>
 </div>
 </div>
 <p>This will calculate the mean score for each class separately.</p>
@@ -618,7 +618,7 @@ Levels: High Low Medium</code></pre>
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>summary_statistics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  mean_score median_score sd_score
-1       87.6           88  5.59464</code></pre>
+1       91.6           90 8.532292</code></pre>
 </div>
 </div>
 </section>
@@ -632,11 +632,11 @@ Levels: High Low Medium</code></pre>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>my_data_frame_with_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade class mean_score
-1  1   Emma    90   TRUE          0.4289820     B     B       87.6
-2  2   Rony    85   TRUE         -0.4647305     C     A       87.6
-3  3 Jostin    88   TRUE          0.0714970     B     B       87.6
-4  4  David    95   TRUE          1.3226945     A     A       87.6
-5  5   Alex    80  FALSE         -1.3584430     C     B       87.6</code></pre>
+1  1   Emma    90   TRUE         -0.1875229     C     B       91.6
+2  2   Rony    80  FALSE         -1.3595410     C     A       91.6
+3  3 Jostin    88   TRUE         -0.4219265     C     B       91.6
+4  4  David   100   TRUE          0.9844952     B     A       91.6
+5  5   Alex   100   TRUE          0.9844952     B     B       91.6</code></pre>
 </div>
 </div>
 </section>

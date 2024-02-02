@@ -144,7 +144,7 @@ A data frame is a table or a two-dimensional array-like structure. Let's create 
 my_data_frame <- data.frame(
   id = 1:5,
   name = c("Emma", "Rony", "Jostin", "David", "Alex"),
-  score = c(90, 85, 88, 95, 80)
+  score = c(90, 80, 88, 100, 100)
 )
 
 my_data_frame
