@@ -12,7 +12,6 @@ website:
         text: Home
       - text: "Intro to R"
         file: content/01-basics.qmd
-        file: content/02-data-cleaning.qmd
 
   sidebar:
     - title: "Content"
