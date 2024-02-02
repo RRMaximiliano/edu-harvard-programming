@@ -167,6 +167,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">2: Data cleaning – Part 1</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/03-data-cleaning-part-ii.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: Data cleaning – Part 2</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -218,6 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#customizing-your-plot" id="toc-customizing-your-plot" class="nav-link" data-scroll-target="#customizing-your-plot">Customizing Your Plot</a></li>
   <li><a href="#creating-a-bar-chart" id="toc-creating-a-bar-chart" class="nav-link" data-scroll-target="#creating-a-bar-chart">Creating a Bar Chart</a></li>
   </ul></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
   </ul>
 </nav>
     </div>
@@ -350,13 +357,13 @@ Levels: High Low Medium</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -421,7 +428,12 @@ Levels: High Low Medium</code></pre>
 <section id="data-manipulation-with-dplyr" class="level2">
 <h2 class="anchored" data-anchor-id="data-manipulation-with-dplyr">Data Manipulation with <code>dplyr</code></h2>
 <p>The <code>dplyr</code> package offers a set of functions for manipulating data frames:</p>
-<p><code>filter()</code>: Extracts a subset of rows based on conditions. <code>select()</code>: Selects columns by name. <code>mutate()</code>: Creates new columns or modifies existing ones. <code>summarise()</code>: Summarizes multiple values into a single value.</p>
+<ul>
+<li><code>filter()</code>: Extracts a subset of rows based on conditions.</li>
+<li><code>select()</code>: Selects columns by name.</li>
+<li><code>mutate()</code>: Creates new columns or modifies existing ones.</li>
+<li><code>summarise()</code>: Summarizes multiple values into a single value.</li>
+</ul>
 <p>However, before we use the dplyr package, let’s understand the pipe operator.</p>
 <section id="pipe-operator" class="level3">
 <h3 class="anchored" data-anchor-id="pipe-operator">Pipe operator</h3>
@@ -682,9 +694,16 @@ Levels: High Low Medium</code></pre>
 <p>Here, <code>as.factor(name)</code> is used to treat the name variable as a categorical variable. <code>geom_bar()</code> by default counts the number of occurrences of each unique value.</p>
 <p><code>ggplot2</code> is a versatile and powerful tool for creating visualizations in R. With its consistent syntax and comprehensive features, it allows you to construct a wide variety of graph types, from simple scatter plots to complex multi-layered graphics. As you become more familiar with <code>ggplot2</code>, you will discover its full potential for conveying information in a visual format.</p>
 <p>Certainly! Let’s add a section on the <code>summarise()</code> function from the <code>dplyr</code> package. <code>summarise()</code> is used to reduce each group of a data frame to a single summary value, making it essential for data analysis tasks such as calculating summaries (mean, median, sum, etc.) across groups.</p>
-
-
 </section>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
+<p>If you don’t understand a function, you can use the question mark and the function you would like to know more about, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">mutate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

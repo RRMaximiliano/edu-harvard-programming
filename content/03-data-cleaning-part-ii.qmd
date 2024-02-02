@@ -1,0 +1,128 @@
+---
+title: "Data Cleaning and Analysis with tidyverse: Second Part"
+author: "Rony Rodriguez-Ramirez"
+date: "2024-02-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+# Introduction
+
+In this tutorial, we delve into advanced data cleaning and analysis techniques focusing on student and department datasets. We will also demonstrate how to create custom functions in R to automate repetitive tasks in data analysis.
+
+## Merging Datasets
+
+We will start by merging datasets using `dplyr`'s join functions to combine student information with department details.
+
+### Students and Departments Dataset
+
+```{r}
+# Students data
+students <- tibble(
+  stu_id = c(1, 2, 3, 4),
+  stu_name = c("Emma", "Rony", "Jostin", "David"),
+  dept_id = c(2, 2, 3, 4)
+)
+
+# Departments data
+departments <- tibble(
+  dept_id = c(1, 2, 3, 4),
+  dept_name = c("Math", "EDU", "Science", "ECON")
+)
+```
+
+### `left_join`
+
+```{r}
+# Include all students and their departments if available
+stu_dept <- left_join(students, departments, by = "dept_id")
+stu_dept
+```
+
+### `right_join`
+
+```{r}
+# Include all departments and any students in those departments
+dept_stu <- right_join(students, departments, by = "dept_id")
+dept_stu
+```
+
+### `full_join`
+
+```{r}
+# Include all students and all departments, matching where possible
+all_stu_dept <- full_join(students, departments, by = "dept_id")
+all_stu_dept
+```
+
+## Creating Functions for Data Analysis
+
+Creating custom functions can significantly enhance efficiency in data analysis. It might not be the case, but if you want to have a function that estimates the `mean`, `sd`, and `std` value in a column we can do the following. Let's called it `add_stats_columns`. This function is designed to enhance a dataset by adding statistical analysis columns related to a specific numeric column within the dataset. It calculates the mean, standard deviation, and creates a standardized version of the selected column. Below is an explanation of the function and a breakdown of each line within it:
+
+### The `add_stats_columns` Function Explained
+
+```{r}
+add_stats_columns <- function(data, column_name) {
+  mean_val <- mean(data[[column_name]], na.rm = TRUE)
+  sd_val   <- sd(data[[column_name]], na.rm = TRUE)
+  
+  data[[paste0(column_name, "_mean")]] <- mean_val
+  data[[paste0(column_name, "_sd")]]   <- sd_val
+  data[[paste0(column_name, "_standardized")]] <- (data[[column_name]] - mean_val) / sd_val
+  
+  return(data)
+}
+```
+
+#### Breaking Down the Function
+
+- `add_stats_columns <- function(data, column_name) { ... }`: This line defines the function `add_stats_columns` that takes two arguments: `data`, a dataset (in the form of a data frame or tibble), and `column_name`, a string representing the name of the column to be analyzed.
+- `mean_val <- mean(data[[column_name]], na.rm = TRUE)`: This line calculates the mean of the specified column, excluding any `NA` (missing) values with `na.rm = TRUE`, and stores it in `mean_val`.
+- `sd_val <- sd(data[[column_name]], na.rm = TRUE)`: Similarly, this line calculates the standard deviation of the specified column, excluding `NA` values, and stores it in `sd_val`.
+- `data[[paste0(column_name, "_mean")]] <- mean_val`: This line creates a new column in the dataset named after the original column with `_mean` appended (e.g., if `column_name` is `"scores"`, the new column name will be `"scores_mean"`), and assigns the calculated mean value to this new column for all rows.
+- `data[[paste0(column_name, "_sd")]] <- sd_val`: This line adds another new column to the dataset for the standard deviation, following the same naming convention as for the mean (e.g., `"scores_sd"`), and fills it with the calculated standard deviation value.
+- `data[[paste0(column_name, "_standardized")]] <- (data[[column_name]] - mean_val) / sd_val`: This line calculates the standardized value for each row in the specified column by subtracting the mean and dividing by the standard deviation. It then stores these values in a new column named with `_standardized` appended to the original column name (e.g., `"scores_standardized"`). Standardizing a dataset in this way adjusts the values to have a mean of 0 and a standard deviation of 1, which is useful for certain types of analysis and modeling.
+- `return(data)`: Finally, the function returns the modified dataset with the new statistical columns added. In fact, you can just write `data`, do not need to use the `return` function but let's keep it.
+
+### Usage Example
+
+Assuming `students` is a dataset with a numeric column named `"math_scores"`, you can use the function to add statistical analysis columns related to `"math_scores"` as follows:
+
+```{r}
+# Example usage with a hypothetical numeric column in students dataset
+# Let's merge a math_scores data first.
+scores <- tibble(
+  stu_id = c(1, 2, 3, 4),
+  math_scores = c(80, 95, 93, 90)
+)
+
+# Merge the scores with the students data using stu_id 
+stu_scores <- right_join(students, scores, by = "stu_id")
+stu_scores
+
+# Now, let's apply the function add_stats_columns
+stu_scores_with_stats <- add_stats_columns(stu_scores, "math_scores")
+stu_scores_with_stats
+```
+
+### Applying Functions to Grouped Data
+
+Using `dplyr` and `purrr` to apply functions to each group separately.
+
+```{r}
+# Group by department and apply stats function
+students_grouped <- stu_scores %>%
+  group_by(dept_id) %>%
+  group_modify(~ add_stats_columns(.x, "math_scores")) %>%
+  ungroup()
+
+students_grouped
+```
+
+`group_modify()` applies a function to each group of a grouped dataframe, where `.x` is the sliced dataframe for each group. This way, the add_stats_columns function is applied correctly to each department group within your `stu_scores` dataset.
+
+This corrected approach ensures that your custom function `add_stats_columns` is applied to the math_scores column for each group defined by `dept_id`, achieving the intended goal of adding statistical columns based on department groups.

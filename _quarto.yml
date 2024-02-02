@@ -25,6 +25,8 @@ website:
             file: content/01-basics.qmd
           - text: "2: Data cleaning -- Part 1"
             file: content/02-data-cleaning.qmd
+          - text: "3: Data cleaning -- Part 2"
+            file: content/03-data-cleaning-part-ii.qmd
     
 format:
   html:
