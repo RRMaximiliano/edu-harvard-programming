@@ -1,0 +1,152 @@
+---
+title: "Data Cleaning and Analysis with tidyverse: First Part"
+author: "Rony Rodriguez-Ramirez"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+Building on the basics of R and the tidyverse, this tutorial delves into more complex data cleaning and analysis techniques. We'll tackle common challenges encountered with real-world data and explore ways to manipulate and analyze datasets to extract meaningful insights.
+
+## Handling Missing Data
+
+Real-world datasets often come with missing values, which can significantly impact your analysis. Let's explore strategies to deal with missing data:
+
+### Identifying Missing Values
+
+
+In the tidyverse, `tibble()` and `tribble()` are functions that create a more modern take on the data frame. They are part of the `tibble` package and offer several advantages over the base R `data.frame` for data analysis and manipulation (the one we saw in the basics tutorial. Here's a brief overview of each and how they compare to traditional data frames.
+
+### `tibble()`
+
+A `tibble` is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Here are some key features:
+
+- **Printing**: Tibbles are printed in a more readable format than traditional data frames, showing only the first 10 rows and all columns that fit on the screen.
+- **Subsetting**: Subsetting a tibble with `[` always returns a tibble, unlike `data.frame`, which might return a vector if a single column is selected.
+- **Column data types**: Tibbles are more tolerant about column types and do not convert strings to factors by default (a common source of frustration in R).
+
+```{r}
+# Creating a tibble
+my_tibble <- tibble(
+  id = 1:5,
+  name = c("Emma", "Rony", "Jostin", "David", "Alex"),
+  score = c(90, 85, 88, 95, 80)
+)
+```
+
+### `tribble()`
+
+`tribble()`, short for "transposed tibble", is designed for easy manual creation of tibbles. It allows for a column-wise specification of data which can be more readable and convenient for small datasets or examples.
+
+- **Readability**: The layout of `tribble()` makes it easy to visually match values to their respective columns.
+- **Convenience**: Ideal for creating small datasets for examples or tests.
+
+```{r}
+# Creating a tribble
+my_tribble <- tribble(
+  ~id, ~name,    ~score,
+  1,   "Emma",  90,
+  2,   "Rony",  85,
+  3,   "Jostin", 88,
+  4,   "David",  95,
+  5,   "Alex",    80
+)
+```
+
+### Differences from `data.frame`
+
+While `data.frame` is the base R structure for storing tabular data, `tibble` and `tribble` bring improvements that are particularly useful in data analysis:
+
+- **Printing and Viewing**: Tibbles provide a more user-friendly way to view data in the console.
+- **Factor conversion**: By default, strings are not converted to factors in tibbles, avoiding unexpected behavior during data analysis.
+- **Subsetting behavior**: Consistent output types make tibble subsetting more predictable.
+- **Row names**: Tibbles do not use row names, which encourages cleaner, more explicit data manipulation.
+
+In summary, `tibble()` and `tribble()` offer a modern, tidyverse-optimized approach to data frames, making data manipulation and exploration in R more intuitive and less prone to common data analysis pitfalls.
+
+Let's go back to our data cleaning tutorial and let's first create a dataset with missing values:
+
+```{r}
+# Load sample data
+data <- tribble(
+  ~id, ~value, ~category,
+  1, NA, "A",
+  2, 5, "B",
+  3, 2, "A",
+  4, NA, "B",
+  5, 3, "C"
+)
+
+# Identify rows with missing values
+data %>% 
+  filter(is.na(value))
+```
+
+### Imputing Missing Values
+
+```{r}
+# Impute missing values with the mean
+data %>% 
+  mutate(
+    value = if_else(is.na(value), mean(value, na.rm = TRUE), value)
+  )
+```
+
+## Joining Datasets
+
+Often, you'll need to combine data from multiple sources. Here, we'll use `dplyr`'s join functions to merge datasets.
+
+### Example Datasets
+
+```{r}
+# Create two sample datasets
+students <- tibble(
+  id = 1:3,
+  name = c("Emma", "Rony", "Jostin")
+)
+
+scores <- tibble(
+  id = c(1, 2, 4),
+  score = c(88, 95, 75)
+)
+```
+
+### Inner Join
+
+```{r}
+# Merge datasets to include only matching IDs
+inner_join(students, scores, by = "id")
+```
+
+## Exploratory Data Analysis (EDA)
+
+EDA is crucial for understanding the underlying patterns of your data. We'll use `ggplot2` for visualization.
+
+### Histograms
+
+Histograms are great for visualizing the distribution of a numerical variable:
+
+```{r}
+# Using the `scores` dataset
+ggplot(scores, aes(x = score)) +
+  geom_histogram(bins = 5, fill = "grey", color = "black") +
+  labs(title = "Distribution of Scores") +
+  theme_minimal()
+```
+
+### Boxplots
+
+Boxplots provide insights into the central tendency and spread of data, as well as outliers:
+
+```{r}
+# Using the `scores` dataset
+ggplot(scores, aes(x = "", y = score)) +
+  geom_boxplot(fill = "grey", color = "black") +
+  labs(title = "Score Spread") +
+  theme_minimal()
+```
+
+

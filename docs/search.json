@@ -110,5 +110,33 @@
     "title": "Readings, lectures, and videos",
     "section": "",
     "text": "Each tutorial has a set of required readings that you should complete before watching the lecture."
+  },
+  {
+    "objectID": "content/02-data-cleaning.html",
+    "href": "content/02-data-cleaning.html",
+    "title": "Data Cleaning and Analysis with tidyverse: First Part",
+    "section": "",
+    "text": "Building on the basics of R and the tidyverse, this tutorial delves into more complex data cleaning and analysis techniques. We’ll tackle common challenges encountered with real-world data and explore ways to manipulate and analyze datasets to extract meaningful insights."
+  },
+  {
+    "objectID": "content/02-data-cleaning.html#handling-missing-data",
+    "href": "content/02-data-cleaning.html#handling-missing-data",
+    "title": "Data Cleaning and Analysis with tidyverse: First Part",
+    "section": "Handling Missing Data",
+    "text": "Handling Missing Data\nReal-world datasets often come with missing values, which can significantly impact your analysis. Let’s explore strategies to deal with missing data:\n\nIdentifying Missing Values\nIn the tidyverse, tibble() and tribble() are functions that create a more modern take on the data frame. They are part of the tibble package and offer several advantages over the base R data.frame for data analysis and manipulation (the one we saw in the basics tutorial. Here’s a brief overview of each and how they compare to traditional data frames.\n\n\ntibble()\nA tibble is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Here are some key features:\n\nPrinting: Tibbles are printed in a more readable format than traditional data frames, showing only the first 10 rows and all columns that fit on the screen.\nSubsetting: Subsetting a tibble with [ always returns a tibble, unlike data.frame, which might return a vector if a single column is selected.\nColumn data types: Tibbles are more tolerant about column types and do not convert strings to factors by default (a common source of frustration in R).\n\n\n# Creating a tibble\nmy_tibble &lt;- tibble(\n  id = 1:5,\n  name = c(\"Emma\", \"Rony\", \"Jostin\", \"David\", \"Alex\"),\n  score = c(90, 85, 88, 95, 80)\n)\n\n\n\ntribble()\ntribble(), short for “transposed tibble”, is designed for easy manual creation of tibbles. It allows for a column-wise specification of data which can be more readable and convenient for small datasets or examples.\n\nReadability: The layout of tribble() makes it easy to visually match values to their respective columns.\nConvenience: Ideal for creating small datasets for examples or tests.\n\n\n# Creating a tribble\nmy_tribble &lt;- tribble(\n  ~id, ~name,    ~score,\n  1,   \"Emma\",  90,\n  2,   \"Rony\",  85,\n  3,   \"Jostin\", 88,\n  4,   \"David\",  95,\n  5,   \"Alex\",    80\n)\n\n\n\nDifferences from data.frame\nWhile data.frame is the base R structure for storing tabular data, tibble and tribble bring improvements that are particularly useful in data analysis:\n\nPrinting and Viewing: Tibbles provide a more user-friendly way to view data in the console.\nFactor conversion: By default, strings are not converted to factors in tibbles, avoiding unexpected behavior during data analysis.\nSubsetting behavior: Consistent output types make tibble subsetting more predictable.\nRow names: Tibbles do not use row names, which encourages cleaner, more explicit data manipulation.\n\nIn summary, tibble() and tribble() offer a modern, tidyverse-optimized approach to data frames, making data manipulation and exploration in R more intuitive and less prone to common data analysis pitfalls.\nLet’s go back to our data cleaning tutorial and let’s first create a dataset with missing values:\n\n# Load sample data\ndata &lt;- tribble(\n  ~id, ~value, ~category,\n  1, NA, \"A\",\n  2, 5, \"B\",\n  3, 2, \"A\",\n  4, NA, \"B\",\n  5, 3, \"C\"\n)\n\n# Identify rows with missing values\ndata %&gt;% \n  filter(is.na(value))\n\n# A tibble: 2 × 3\n     id value category\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   \n1     1    NA A       \n2     4    NA B       \n\n\n\n\nImputing Missing Values\n\n# Impute missing values with the mean\ndata %&gt;% \n  mutate(\n    value = if_else(is.na(value), mean(value, na.rm = TRUE), value)\n  )\n\n# A tibble: 5 × 3\n     id value category\n  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   \n1     1  3.33 A       \n2     2  5    B       \n3     3  2    A       \n4     4  3.33 B       \n5     5  3    C"
+  },
+  {
+    "objectID": "content/02-data-cleaning.html#joining-datasets",
+    "href": "content/02-data-cleaning.html#joining-datasets",
+    "title": "Data Cleaning and Analysis with tidyverse: First Part",
+    "section": "Joining Datasets",
+    "text": "Joining Datasets\nOften, you’ll need to combine data from multiple sources. Here, we’ll use dplyr’s join functions to merge datasets.\n\nExample Datasets\n\n# Create two sample datasets\nstudents &lt;- tibble(\n  id = 1:3,\n  name = c(\"Emma\", \"Rony\", \"Jostin\")\n)\n\nscores &lt;- tibble(\n  id = c(1, 2, 4),\n  score = c(88, 95, 75)\n)\n\n\n\nInner Join\n\n# Merge datasets to include only matching IDs\ninner_join(students, scores, by = \"id\")\n\n# A tibble: 2 × 3\n     id name  score\n  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;\n1     1 Emma     88\n2     2 Rony     95"
+  },
+  {
+    "objectID": "content/02-data-cleaning.html#exploratory-data-analysis-eda",
+    "href": "content/02-data-cleaning.html#exploratory-data-analysis-eda",
+    "title": "Data Cleaning and Analysis with tidyverse: First Part",
+    "section": "Exploratory Data Analysis (EDA)",
+    "text": "Exploratory Data Analysis (EDA)\nEDA is crucial for understanding the underlying patterns of your data. We’ll use ggplot2 for visualization.\n\nHistograms\nHistograms are great for visualizing the distribution of a numerical variable:\n\n# Using the `scores` dataset\nggplot(scores, aes(x = score)) +\n  geom_histogram(bins = 5, fill = \"grey\", color = \"black\") +\n  labs(title = \"Distribution of Scores\") +\n  theme_minimal()\n\n\n\n\n\n\nBoxplots\nBoxplots provide insights into the central tendency and spread of data, as well as outliers:\n\n# Using the `scores` dataset\nggplot(scores, aes(x = \"\", y = score)) +\n  geom_boxplot(fill = \"grey\", color = \"black\") +\n  labs(title = \"Score Spread\") +\n  theme_minimal()"
   }
 ]

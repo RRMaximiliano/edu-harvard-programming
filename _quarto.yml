@@ -23,6 +23,8 @@ website:
           contents:
           - text: "1: Intro to R"
             file: content/01-basics.qmd
+          - text: "2: Data cleaning -- Part 1"
+            file: content/02-data-cleaning.qmd
     
 format:
   html:
