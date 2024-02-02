@@ -1,7 +1,7 @@
 ---
 title: "Data Cleaning and Analysis with tidyverse: First Part"
 author: "Rony Rodriguez-Ramirez"
-date: "`r Sys.Date()`"
+date: "2024-02-02"
 ---
 
 ```{r setup, include=FALSE}
