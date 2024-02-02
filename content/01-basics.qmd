@@ -35,9 +35,94 @@ library(tidyverse)
 
 The first line will install the package, and the second will load the package to your current R session. After you install your package, you do not need to use the first line again in your scripts.
 
+## Understanding Data Types in R
+
+R supports various data types, each serving different purposes in data analysis. Familiarity with these data types is essential for effective data manipulation. Below are the primary data types you'll encounter in R:
+
+### Numeric
+
+Numeric data types are used to represent real numbers. They can be integers (without decimal points) or doubles (with decimal points), though R treats all numbers as floating-point values by default.
+
+```{r}
+my_integer <- 42  # An integer
+my_double  <- 42.5 # A double
+```
+
+### Character
+
+Character data types represent text. In R, text values are enclosed in quotes.
+
+```{r}
+my_character <- "Hello, world! I love econometrics!"
+my_character
+```
+
+### Logical
+
+Logical (or boolean) data types represent TRUE or FALSE values. They are the result of conditions or logical operations.
+
+```{r}
+my_logical <- TRUE
+is_greater <- (5 > 2) # Evaluates to TRUE
+
+my_logical
+is_greater
+```
+
+### Factor
+
+Factors are used to represent categorical data. They are especially useful for representing groups or levels (e.g., "Low", "Medium", "High").
+
+```{r}
+my_factor <- factor(c("Low", "Medium", "High", "Low", "Medium"))
+
+my_factor
+```
+
+### Date and POSIXct
+
+Date and POSIXct represent dates and date-times, respectively. They are crucial for time series analysis or any analysis that involves dates.
+
+```{r}
+my_date     <- as.Date("2024-01-01")
+my_datetime <- as.POSIXct("2024-01-01 12:00:00")
+
+my_date
+my_datetime
+```
+
+
+### Data Frame and Tibble
+
+A data frame is a table-like structure that can hold columns of different data types. A tibble is a modern take on the data frame, part of the `tidyverse`, designed to be more user-friendly. We will discuss more about this is the data cleaning section.
+
+```{r}
+my_data_frame <- data.frame(
+  id = 1:3,
+  name = c("Alice", "Bob", "Charlie"),
+  score = c(90, 85, 88)
+)
+
+my_tibble <- tibble(
+  id = 1:3,
+  name = c("Alice", "Bob", "Charlie"),
+  score = c(90, 85, 88)
+)
+```
+
+### List
+
+Lists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.
+
+```{r}
+my_list <- list(name = "Eric Taylor", scores = c(90, 85, 88), passed = TRUE)
+```
+
+Each type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks.
+
 ## Basic R Operations
 
-R can be used as a simple calculator. Try typing 2 + 2 in the console. You can assign values to variables using <-.
+Now, let's look at the basic operations. First, R can be used as a simple calculator. Try typing `2 + 2` in the console. You can assign values to variables using `<-`.
 
 ```{r}
 x <- 2 + 2

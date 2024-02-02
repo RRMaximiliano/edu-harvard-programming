@@ -39,7 +39,7 @@
     "href": "content/01-basics.html#basic-r-operations",
     "title": "Introduction to R: The Basics",
     "section": "Basic R Operations",
-    "text": "Basic R Operations\nR can be used as a simple calculator. Try typing 2 + 2 in the console. You can assign values to variables using &lt;-.\n\nx &lt;- 2 + 2\nx\n\n[1] 4"
+    "text": "Basic R Operations\nNow, let’s look at the basic operations. First, R can be used as a simple calculator. Try typing 2 + 2 in the console. You can assign values to variables using &lt;-.\n\nx &lt;- 2 + 2\nx\n\n[1] 4"
   },
   {
     "objectID": "content/01-basics.html#vectors-and-data-frames",
@@ -138,5 +138,12 @@
     "title": "Data Cleaning and Analysis with tidyverse: First Part",
     "section": "Exploratory Data Analysis (EDA)",
     "text": "Exploratory Data Analysis (EDA)\nEDA is crucial for understanding the underlying patterns of your data. We’ll use ggplot2 for visualization.\n\nHistograms\nHistograms are great for visualizing the distribution of a numerical variable:\n\n# Using the `scores` dataset\nggplot(scores, aes(x = score)) +\n  geom_histogram(bins = 5, fill = \"grey\", color = \"black\") +\n  labs(title = \"Distribution of Scores\") +\n  theme_minimal()\n\n\n\n\n\n\nBoxplots\nBoxplots provide insights into the central tendency and spread of data, as well as outliers:\n\n# Using the `scores` dataset\nggplot(scores, aes(x = \"\", y = score)) +\n  geom_boxplot(fill = \"grey\", color = \"black\") +\n  labs(title = \"Score Spread\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "content/01-basics.html#understanding-data-types-in-r",
+    "href": "content/01-basics.html#understanding-data-types-in-r",
+    "title": "Introduction to R: The Basics",
+    "section": "Understanding Data Types in R",
+    "text": "Understanding Data Types in R\nR supports various data types, each serving different purposes in data analysis. Familiarity with these data types is essential for effective data manipulation. Below are the primary data types you’ll encounter in R:\n\nNumeric\nNumeric data types are used to represent real numbers. They can be integers (without decimal points) or doubles (with decimal points), though R treats all numbers as floating-point values by default.\n\nmy_integer &lt;- 42  # An integer\nmy_double  &lt;- 42.5 # A double\n\n\n\nCharacter\nCharacter data types represent text. In R, text values are enclosed in quotes.\n\nmy_character &lt;- \"Hello, world! I love econometrics!\"\nmy_character\n\n[1] \"Hello, world! I love econometrics!\"\n\n\n\n\nLogical\nLogical (or boolean) data types represent TRUE or FALSE values. They are the result of conditions or logical operations.\n\nmy_logical &lt;- TRUE\nis_greater &lt;- (5 &gt; 2) # Evaluates to TRUE\n\nmy_logical\n\n[1] TRUE\n\nis_greater\n\n[1] TRUE\n\n\n\n\nFactor\nFactors are used to represent categorical data. They are especially useful for representing groups or levels (e.g., “Low”, “Medium”, “High”).\n\nmy_factor &lt;- factor(c(\"Low\", \"Medium\", \"High\", \"Low\", \"Medium\"))\n\nmy_factor\n\n[1] Low    Medium High   Low    Medium\nLevels: High Low Medium\n\n\n\n\nDate and POSIXct\nDate and POSIXct represent dates and date-times, respectively. They are crucial for time series analysis or any analysis that involves dates.\n\nmy_date     &lt;- as.Date(\"2024-01-01\")\nmy_datetime &lt;- as.POSIXct(\"2024-01-01 12:00:00\")\n\nmy_date\n\n[1] \"2024-01-01\"\n\nmy_datetime\n\n[1] \"2024-01-01 12:00:00 EST\"\n\n\n\n\nData Frame and Tibble\nA data frame is a table-like structure that can hold columns of different data types. A tibble is a modern take on the data frame, part of the tidyverse, designed to be more user-friendly. We will discuss more about this is the data cleaning section.\n\nmy_data_frame &lt;- data.frame(\n  id = 1:3,\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  score = c(90, 85, 88)\n)\n\nmy_tibble &lt;- tibble(\n  id = 1:3,\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  score = c(90, 85, 88)\n)\n\n\n\nList\nLists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.\n\nmy_list &lt;- list(name = \"Eric Taylor\", scores = c(90, 85, 88), passed = TRUE)\n\nEach type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks."
   }
 ]
