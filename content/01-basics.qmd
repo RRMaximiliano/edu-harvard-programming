@@ -10,8 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-# Introduction
-
 Welcome to this introductory tutorial on R! R is a powerful language and environment for statistical computing and graphics. It offers a wide variety of statistical and graphical techniques and is highly extensible. One of the key features of R is its package ecosystem, the most notable of which is the tidyverse, a collection of packages designed for data science.
 
 This tutorial is designed for individuals with minimal statistical background. We will cover the basics of R, including how to install and load packages, import data, perform simple data manipulations, and create basic visualizations.
