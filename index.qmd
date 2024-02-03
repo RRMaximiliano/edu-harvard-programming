@@ -1,8 +1,21 @@
 ---
-title: "Welcome to Intro to R for PhD Students in Education"
+title: "Introduction to R for PhD students in Education, Harvard University"
+subtitle: "Programming, Tools, R, and More"
+details: |
+  EDU • Spring 2024<br>HGSE, Harvard University
+sidebar: false
+toc: false
+page-layout: full
+format:
+  html:
+    template-partials:
+      - html/home/title-block.html
+course-logo: /files/img/logo.png
 ---
 
-Hello, I'm Rony Rodriguez-Ramirez, and this website is my personal project to provide PhD students in Education with tutorials, resources, and tools aimed at enhancing their research and academic skills. This initiative is designed to support your journey through the PhD program with practical and accessible learning materials.
+::::: {.home}
+
+Hello, I'm Rony Rodriguez-Ramirez (G1), and this website is my personal project to provide PhD students in Education with tutorials, resources, and tools aimed at enhancing their research and academic skills. This initiative is designed to support your journey through the PhD program with practical and accessible learning materials.
 
 ## About This Project
 
@@ -19,6 +32,8 @@ I've crafted these tutorials to cater to a broad spectrum of needs, from the bas
 - To complete
 
 Thank you for visiting, and I hope you find these resources helpful on your academic path!
+
+:::::
 
 <footer>
 <p align="center">© 2024 Rony Rodriguez-Ramirez </p>

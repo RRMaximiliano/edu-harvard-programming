@@ -1,5 +1,5 @@
 ---
-title: "Data Cleaning and Analysis with tidyverse: First Part"
+title: "Data Cleaning and Analysis with tidyverse:<br>First Part"
 author: "Rony Rodriguez-Ramirez"
 date: "2024-02-02"
 ---

@@ -6,9 +6,13 @@ instructor:
   email: rrodriguezramirez@g.harvard.edu
   url: "https://rrmaximiliano.github.io"
   github: rrmaximiliano
+
 semester: "Spring 2024"
+
 university:
   name: Harvard University
+  
 copyright_year: "2024"
+
 course:
   github: "https://www.github.com/rrmaximiliano/edu-harvard-intro-to-R"

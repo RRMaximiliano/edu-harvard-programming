@@ -1,0 +1,95 @@
+---
+title: "Regular Expressions in R with tidyverse"
+author: "Rony Rodriguez-Ramirez"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Introduction to Regular Expressions
+
+Regular expressions are a powerful tool for pattern matching, searching, and replacing text. R, through the `stringr` package from the tidyverse, provides a suite of functions that make working with regular expressions straightforward.
+
+## Basic Concepts
+
+A regular expression is a sequence of characters that forms a search pattern. It can be used to check if a string contains the specified search pattern.
+
+### Commonly Used Metacharacters:
+
+- `.`: Matches any single character.
+- `^`: Matches the start of a string.
+- `$`: Matches the end of a string.
+- `*`: Matches zero or more occurrences of the preceding element.
+- `+`: Matches one or more occurrences of the preceding element.
+- `?`: Matches zero or one occurrence of the preceding element.
+- `\\d`: Matches any digits.
+- `\\w`: Matches any word character (alphanumeric or underscore).
+- `[...]`: Matches any single character contained within the brackets.
+- `|`: Logical OR operator.
+
+## Using `stringr` for Regex Operations
+
+The `stringr` package simplifies the use of regular expressions in R. Here are some common functions:
+
+### Pattern Matching with `str_detect()`
+
+Checks if strings match a pattern.
+
+```{r}
+texts <- c("apple", "banana", "pear", "orange")
+str_detect(texts, pattern = "a")
+```
+
+### Extracting Matches with `str_extract()`
+
+Extracts the first occurrence of a pattern.
+
+```{r}
+str_extract(texts, pattern = "\\b[a-z]*a\\b")
+```
+
+### Replacing Text with `str_replace()`
+
+Replaces the first occurrence of a pattern.
+
+```{r}
+str_replace(texts, pattern = "a", replacement = "@")
+```
+
+### Splitting Strings with `str_split()`
+
+Splits strings based on a pattern.
+
+```{r}
+str_split(texts, pattern = "a")
+```
+
+## Advanced Examples
+
+### Extracting Emails from Text
+
+Using a more complex regex to find email addresses in a string.
+
+```{r}
+sample_text <- "Contact us at info@example.com or support@example.org"
+email_pattern <- "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}"
+str_extract_all(sample_text, pattern = email_pattern)
+```
+
+### Validating Phone Numbers
+
+Check if strings are valid phone numbers.
+
+```{r}
+phone_numbers <- c("123-456-7890", "987 654 3210", "Invalid Number")
+phone_pattern <- "^\\d{3}[- ]?\\d{3}[- ]?\\d{4}$"
+str_detect(phone_numbers, pattern = phone_pattern)
+```
+
+## Conclusion
+
+Regular expressions are a versatile and powerful tool for text processing. The `stringr` package from the tidyverse makes regex operations in R both accessible and efficient. By mastering regular expressions, you can perform complex text manipulations and data cleaning tasks with ease.
+
