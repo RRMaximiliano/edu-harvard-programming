@@ -1,7 +1,7 @@
 ---
 title: "Regular Expressions in R with tidyverse"
 author: "Rony Rodriguez-Ramirez"
-date: "`r Sys.Date()`"
+date: "2024-02-03"
 ---
 
 ```{r setup, include=FALSE}

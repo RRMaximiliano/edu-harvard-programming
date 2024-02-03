@@ -47,8 +47,10 @@ website:
             file: content/03-data-cleaning-part-ii.qmd
           - text: "4: Regular Expressions"
             file: content/04-regex.qmd
-          - text: "5: Data visualization"
+          - text: "5: Data Visualization"
             file: content/05-data-viz.qmd
+          - text: "6: Building Summary Statistics Tables"
+            file: content/06-data-summ.qmd            
 
 format:
   html:

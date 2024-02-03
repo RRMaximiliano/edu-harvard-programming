@@ -1,5 +1,0 @@
----
-title: "Readings, lectures, and videos"
----
-
-Each tutorial has a set of required readings that you should complete ***before*** watching the lecture. 

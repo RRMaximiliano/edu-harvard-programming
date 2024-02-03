@@ -4,7 +4,6 @@ author: "Rony Rodriguez-Ramirez"
 date: "2024-02-01"
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
