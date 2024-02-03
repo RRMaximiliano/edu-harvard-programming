@@ -1,7 +1,15 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+  resources:
+    - "files/"    
   output-dir: docs
+  
 
+execute:
+  freeze: auto  # Re-render only when source changes: Taken from Andrew Heiss yml
+  
 website:
   title: "R for Education"
   description: "Intro to R for PhD in Education at Harvard University"
@@ -18,6 +26,10 @@ website:
             url: https://github.com/RRMaximiliano/edu-harvard-intro-to-R
             
   favicon: "/files/img/Harvard-Logo.png"
+  
+  page-footer:
+    right: |
+      This website was built with <a href="https://quarto.org/">Quarto</a>.
 
   sidebar:
     - title: "Content"
@@ -34,8 +46,10 @@ website:
           - text: "3: Data cleaning -- Part 2"
             file: content/03-data-cleaning-part-ii.qmd
           - text: "4: Regular Expressions"
-            file: content/04-regex.qmd    
-    
+            file: content/04-regex.qmd
+          - text: "5: Data visualization"
+            file: content/05-data-viz.qmd
+
 format:
   html:
     theme:

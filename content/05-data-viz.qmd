@@ -1,0 +1,186 @@
+---
+title: "Data Visualization in R using ggplot2"
+date: "`r Sys.Date()`"
+author: "Rony Rodriguez-Ramirez"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+here::here()
+```
+
+# Introduction
+
+Visualizing data is crucial in understanding underlying patterns and communicating results effectively. This tutorial will guide you through creating various types of visualizations using `ggplot2` in R, focusing on a dataset of student scores (a fake dataset btw).
+
+## Loading the Dataset
+
+First, we'll load the dataset from a CSV file, and load the tidyverse package.
+
+```{r load-data}
+# Load the package
+library(tidyverse)
+
+# Load the dataset
+scores_data <- read_csv("../files/data/fake_scores.csv")
+```
+
+This dataset contains students (fake) information, you can use the `glimpse` function to look at the variables in the dataset. @tbl-students-table shows a representation of the data we loaded as a table.
+
+```{r}
+#| label: tbl-students-table
+#| echo: false
+#| message: false
+#| tbl-cap: Data from the fake_scores.csv file as a table.
+
+scores_data %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+```{r}
+glimpse(scores_data)
+```
+
+## Understanding `ggplot2`
+
+`ggplot2` is a part of the tidyverse that allows for creating complex and beautiful visualizations using a consistent and intuitive syntax. The name `ggplot2` is derived from the concept of the grammar of graphics, a system for describing and building a wide range of graphics. `ggplot2` uses a grammar of graphics, where you define the data, aesthetics, and geometries.
+
+### Basics of `ggplot2`
+
+A `ggplot2` graph is built up from a few basic elements:
+
+- **Data**: The dataset you want to visualize.
+- **Aesthetics (`aes`)**: Defines how variables in the data are mapped to visual properties (aesthetics) of the graph such as x and y axes, color, size, etc.
+- **Geometries (`geom_` functions)**: The geometric objects (shapes) that represent the data points. For example, points (`geom_point()` for scatter plots), lines (`geom_line()`), and bars (`geom_bar()` for bar charts).
+
+### Histogram
+
+Histograms are great for visualizing the distribution of scores for a single subject. Let's visualize the distribution of *all* scores in the dataset.
+
+```{r histogram}
+scores_data %>% 
+  ggplot( 
+    aes(x = score)
+  ) +
+  geom_histogram(
+    fill = "grey", 
+    color = "black"
+  ) +
+  labs(
+    title = "Distribution of All Scores",
+    x = "All Scores",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+- `scores_data`: The dataset being used, assumed to contain a column named `score` which holds the numeric values that we want to visualize.
+- `%>%`: The pipe operator, used here to pass `scores_data` as the first argument to the following `ggplot()` function.
+- `ggplot(aes(x = score))`: Initializes a ggplot object specifying the aesthetic mappings. Here, `aes(x = score)` indicates that the `score` column from `scores_data` should be used as the x-axis values in the histogram.
+- `geom_histogram()`: This adds a histogram layer to the plot. 
+- `fill = "grey"`: Sets the fill color of the bars in the histogram to grey.
+- `color = "black"`: Sets the color of the border of the bars to black.
+- `labs()`: Used to modify the labels on the plot, including the title of the plot and the x and y axes. Here, it sets the title of the plot to "Distribution of All Scores", labels the x-axis as "All Scores", and the y-axis as "Count", which represents the number of observations within each bin of scores.
+- `theme_minimal()`: Applies a minimalistic theme to the plot, which reduces the background clutter and focuses attention on the data itself.
+
+:::{.callout-warning}
+**Important!!**: The use of the `+` operator instead of the pipe operator (`%>%`) in `ggplot2` syntax is rooted in the design and philosophy of the `ggplot2` package itself, which is based on the Grammar of Graphics.
+
+- **Layered Approach**: `ggplot2` is built on the concept of layering components of a plot on top of each other. The `+` operator is used to add or layer these components, such as axes, plot types (geoms), scales, and themes, to build up a plot step by step. This approach is akin to constructing a sentence in a language, where each layer adds more context or detail, aligning with the Grammar of Graphics philosophy.
+:::
+
+### Scatter Plot
+
+Let's start with a scatter plot comparing scores across two subjects, assuming our dataset has `Math` and `Science` scores. However, see that your dataset currently is in long format. So, we need to change it to wide format. Look at the following code chunk:
+
+```{r}
+scores_data_wide <- scores_data %>% 
+  filter(
+    course %in% c("EDU 001", "EDU 302")
+  ) %>% 
+  pivot_wider(
+    names_from = course, 
+    values_from = score
+  )
+
+scores_data_wide
+```
+
+This will give a dataset with 24 observations and the two subject (EDU 001 and EDU 302) as columns.The `pivot_wider` function creates new columns for each course, with scores filled in accordingly.
+
+- `filter(course %in% c("EDU 001", "EDU 302"))`: Narrows down the dataset to only include scores from the specified courses.
+- `pivot_wider(names_from = course, values_from = score)`: Transforms the dataset so each course becomes its own column, populated with corresponding scores.
+
+Now, let's plot the scores in the two courses.
+
+```{r scatter-plot}
+scores_data_wide %>% 
+  ggplot(
+    aes(x = `EDU 001`, y = `EDU 302`)
+  ) +
+  geom_point() +
+  labs(
+    title = "EDU 001 vs. EDU 302",
+    x = "EDU 001 Scores",
+    y = "EDU 302 Scores"
+  ) +
+  theme_minimal()
+```
+
+## Grouped Visualizations
+
+Visualizing data based on groups or categories is often insightful.
+
+### Boxplot by Subject
+
+Using our dataset in long format, where each row represents a score in a specific course
+
+```{r boxplot}
+scores_data %>% 
+  ggplot(
+    aes(
+      x = course, 
+      y = score, 
+      fill = course
+    )
+  ) +
+  geom_boxplot() +
+  labs(
+    title = "Scores by course",
+    x = "course",
+    y = "Scores"
+  ) +
+  theme_minimal()
+```
+
+### Bar Plot for Average Scores
+
+A bar plot to visualize the average score per subject.
+
+```{r bar-plot}
+scores_data %>%
+  group_by(course) %>%
+  summarise(
+    avg_score = mean(score)
+  ) %>%
+  ggplot(
+    aes(
+      x = course, 
+      y = avg_score, 
+      fill = course
+    )
+  ) +
+  geom_col(color = "black") +
+  labs(
+    title = "Average Scores by Course",
+    x = "Course",
+    y = "Average Score"
+  ) +
+  theme_minimal()
+```
+
+## Conclusion
+
+This tutorial introduced basic to intermediate data visualization techniques using `ggplot2` in R. By leveraging `ggplot2`'s comprehensive features, you can create informative and appealing visual representations of your data to aid in analysis and communication.
+

@@ -91,6 +91,15 @@ my_date
 my_datetime
 ```
 
+### List
+
+Lists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.
+
+```{r}
+my_list <- list(name = "Eric Taylor", scores = c(90, 85, 88), passed = TRUE)
+```
+
+Each type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks.
 
 ### Data Frame and Tibble
 
@@ -110,17 +119,7 @@ my_tibble <- tibble(
 )
 ```
 
-### List
-
-Lists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.
-
-```{r}
-my_list <- list(name = "Eric Taylor", scores = c(90, 85, 88), passed = TRUE)
-```
-
-Each type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks.
-
-## Basic R Operations
+### Basic R Operations
 
 Now, let's look at the basic operations. First, R can be used as a simple calculator. Try typing `2 + 2` in the console. You can assign values to variables using `<-`.
 
@@ -129,7 +128,7 @@ x <- 2 + 2
 x
 ```
 
-## Vectors and Data Frames
+### Vectors
 
 Vectors are basic data structures in R that contain elements of the same type. Use the `c()` function to create a vector:
 
@@ -138,17 +137,6 @@ my_vector <- c(1, 2, 3, 4, 5)
 my_vector
 ```
 
-A data frame is a table or a two-dimensional array-like structure. Let's create a simple data frame:
-
-```{r}
-my_data_frame <- data.frame(
-  id = 1:5,
-  name = c("Emma", "Rony", "Jostin", "David", "Alex"),
-  score = c(90, 80, 88, 100, 100)
-)
-
-my_data_frame
-```
 
 ## Importing Data
 
@@ -167,7 +155,7 @@ The `dplyr` package offers a set of functions for manipulating data frames:
 - `filter()`: Extracts a subset of rows based on conditions.
 - `select()`: Selects columns by name.
 - `mutate()`: Creates new columns or modifies existing ones.
-- `summarise()`: Summarizes multiple values into a single value.
+- `summarize()`: Summarizes multiple values into a single value.
 
 However, before we use the dplyr package, let's understand the pipe operator.
 
@@ -240,7 +228,9 @@ You can also use `mutate()` to modify existing columns. For example, suppose you
 ```{r}
 # Standardize the 'score' column
 my_data_frame <- my_data_frame %>%
-  mutate(score_standardized = (score - mean(score)) / sd(score))
+  mutate(
+    score_standardized = (score - mean(score)) / sd(score)
+  )
 
 my_data_frame
 
@@ -267,19 +257,21 @@ my_data_frame <- my_data_frame %>%
 my_data_frame
 ```
 
-In this example, `case_when()` is used to assign grades: "A" for standardized scores >= 1, "B" for scores >= 0 and < 1, and "C" for scores < 0. This illustrates how `mutate()` can be used to perform multiple transformations simultaneously, enhancing the readability and efficiency of your data manipulation code.
+Here, `case_when()` is used to assign grades: "A" for standardized scores >= 1, "B" for scores >= 0 and < 1, and "C" for scores < 0. This illustrates how `mutate()` can be used to perform multiple transformations simultaneously, enhancing the readability and efficiency of your data manipulation code.
 
-## Summarizing Data with `summarise()`
+## Summarizing Data with `summarize()`
 
-The `summarise()` function in `dplyr` is used to create summary statistics for a dataset or subsets of a dataset. This function can be particularly powerful when combined with `group_by()`, which groups the data frame by one or more variables.
+The `summarize()` function in `dplyr` is used to create summary statistics for a dataset or subsets of a dataset. This function can be particularly powerful when combined with `group_by()`, which groups the data frame by one or more variables.
 
-### Basic Usage of `summarise()`
+### Basic Usage of `summarize()`
 
-Here's how you can use `summarise()` to calculate the average (mean) score of all students in `my_data_frame`:
+Here's how you can use `summarize()` to calculate the average (mean) score of all students in `my_data_frame`:
 
 ```{r}
 average_score <- my_data_frame %>%
-  summarise(mean_score = mean(score))
+  summarize(
+    mean_score = mean(score)
+  )
 
 average_score
 ```
@@ -288,13 +280,15 @@ This code calculates the mean of the `score` column and stores the result in a n
 
 ### Grouped Summaries
 
-To calculate the average score by a categorical variable (e.g., by a hypothetical `class` column), you first group the data by that variable using `group_by()`, then apply `summarise()`:
+To calculate the average score by a categorical variable (e.g., by a hypothetical `class` column), you first group the data by that variable using `group_by()`, then apply `summarize()`:
 
 First, let's add a hypothetical class variable to our data frame to categorize students into two classes, "A" and "B". We'll use the mutate() function to accomplish this:
 
 ```{r}
 my_data_frame <- my_data_frame %>%
-  mutate(class = if_else(id %% 2 == 0, "A", "B"))
+  mutate(
+    class = if_else(id %% 2 == 0, "A", "B")
+  )
 
 my_data_frame
 ```
@@ -306,20 +300,20 @@ Now that we have a class variable, we can calculate the average score for each c
 ```{r}
 average_score_by_class <- my_data_frame %>%
   group_by(class) %>%
-  summarise(mean_score = mean(score))
+  summarize(mean_score = mean(score))
 
 average_score_by_class
 ```
 
 This will calculate the mean score for each class separately.
 
-### Multiple Summary Functions
+### Multiple `summarize` Functions
 
-You can also use `summarise()` to apply multiple summary functions at once. For example, to calculate the mean, median, and standard deviation of scores:
+You can also use `summarize()` to apply multiple summary functions at once. For example, to calculate the mean, median, and standard deviation of scores:
 
 ```{r}
 summary_statistics <- my_data_frame %>%
-  summarise(
+  summarize(
     mean_score = mean(score),
     median_score = median(score),
     sd_score = sd(score)
@@ -328,9 +322,9 @@ summary_statistics <- my_data_frame %>%
 summary_statistics
 ```
 
-### Using `summarise()` with `mutate()`
+### Using `summarize()` with `mutate()`
 
-While `summarise()` reduces your data to a single summary row, `mutate()` can be used alongside to add summary columns to the original data frame. For example, adding a column with the mean score to each row:
+While `summarize()` reduces your data to a single summary row, `mutate()` can be used alongside to add summary columns to the original data frame. For example, adding a column with the mean score to each row:
 
 ```{r}
 my_data_frame_with_mean <- my_data_frame %>%
@@ -338,60 +332,6 @@ my_data_frame_with_mean <- my_data_frame %>%
 
 my_data_frame_with_mean
 ```
-
-## Data Visualization with `ggplot2`
-
-`ggplot2` is a part of the tidyverse that allows for creating complex and beautiful visualizations using a consistent and intuitive syntax. The name `ggplot2` is derived from the concept of the grammar of graphics, a system for describing and building a wide range of graphics.
-
-### Basics of `ggplot2`
-
-A `ggplot2` graph is built up from a few basic elements:
-
-- **Data**: The dataset you want to visualize.
-- **Aesthetics (`aes`)**: Defines how variables in the data are mapped to visual properties (aesthetics) of the graph such as x and y axes, color, size, etc.
-- **Geometries (`geom_` functions)**: The geometric objects (shapes) that represent the data points. For example, points (`geom_point()` for scatter plots), lines (`geom_line()`), and bars (`geom_bar()` for bar charts).
-
-### Creating a Scatter Plot
-
-Let's create a simple scatter plot to visualize the relationship between two variables in `my_data_frame`.
-
-```{r}
-ggplot(my_data_frame, aes(x = id, y = score)) +
-  geom_point()
-```
-
-In this example, `ggplot()` initializes the plot with the data frame `my_data_frame`, and `aes(x = id, y = score)` specifies that `id` should be on the x-axis and `score` on the y-axis. `geom_point()` adds points to represent each row in the dataset.
-
-### Customizing Your Plot
-
-`ggplot2` offers extensive customization options. For example, you can add titles and labels, change the theme, and modify the color of the points.
-
-```{r}
-ggplot(my_data_frame, aes(x = id, y = score)) +
-  geom_point(color = "blue") +
-  labs(title = "Student Scores", x = "ID", y = "Score") +
-  theme_minimal()
-```
-
-This adds a title to the plot, labels the x and y axes, changes the point color to blue, and applies a minimal theme for a cleaner look.
-
-### Creating a Bar Chart
-
-To create a bar chart showing students by score, you can use `geom_col()`.
-
-```{r}
-ggplot(my_data_frame, aes(y = score, x = as.factor(name))) +
-  geom_col(color = "black", fill = "grey") +
-  labs(title = "Students by Score", x = NULL, y = "Score") +
-  theme_minimal()
-```
-
-Here, `as.factor(name)` is used to treat the name variable as a categorical variable. `geom_bar()` by default counts the number of occurrences of each unique value.
-
-`ggplot2` is a versatile and powerful tool for creating visualizations in R. With its consistent syntax and comprehensive features, it allows you to construct a wide variety of graph types, from simple scatter plots to complex multi-layered graphics. As you become more familiar with `ggplot2`, you will discover its full potential for conveying information in a visual format.
-
-Certainly! Let's add a section on the `summarise()` function from the `dplyr` package. `summarise()` is used to reduce each group of a data frame to a single summary value, making it essential for data analysis tasks such as calculating summaries (mean, median, sum, etc.) across groups.
-
 
 ## Getting Help
 

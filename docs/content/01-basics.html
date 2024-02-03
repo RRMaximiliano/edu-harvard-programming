@@ -192,6 +192,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">4: Regular Expressions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/05-data-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: Data visualization</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -216,11 +222,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#logical" id="toc-logical" class="nav-link" data-scroll-target="#logical">Logical</a></li>
   <li><a href="#factor" id="toc-factor" class="nav-link" data-scroll-target="#factor">Factor</a></li>
   <li><a href="#date-and-posixct" id="toc-date-and-posixct" class="nav-link" data-scroll-target="#date-and-posixct">Date and POSIXct</a></li>
-  <li><a href="#data-frame-and-tibble" id="toc-data-frame-and-tibble" class="nav-link" data-scroll-target="#data-frame-and-tibble">Data Frame and Tibble</a></li>
   <li><a href="#list" id="toc-list" class="nav-link" data-scroll-target="#list">List</a></li>
-  </ul></li>
+  <li><a href="#data-frame-and-tibble" id="toc-data-frame-and-tibble" class="nav-link" data-scroll-target="#data-frame-and-tibble">Data Frame and Tibble</a></li>
   <li><a href="#basic-r-operations" id="toc-basic-r-operations" class="nav-link" data-scroll-target="#basic-r-operations">Basic R Operations</a></li>
-  <li><a href="#vectors-and-data-frames" id="toc-vectors-and-data-frames" class="nav-link" data-scroll-target="#vectors-and-data-frames">Vectors and Data Frames</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  </ul></li>
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
   <li><a href="#data-manipulation-with-dplyr" id="toc-data-manipulation-with-dplyr" class="nav-link" data-scroll-target="#data-manipulation-with-dplyr">Data Manipulation with <code>dplyr</code></a>
   <ul class="collapse">
@@ -229,19 +235,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#practical-example-with-dplyr" id="toc-practical-example-with-dplyr" class="nav-link" data-scroll-target="#practical-example-with-dplyr">Practical Example with dplyr</a></li>
   <li><a href="#mutate-summarize-and-other-functions" id="toc-mutate-summarize-and-other-functions" class="nav-link" data-scroll-target="#mutate-summarize-and-other-functions">Mutate, Summarize, and other Functions</a></li>
   </ul></li>
-  <li><a href="#summarizing-data-with-summarise" id="toc-summarizing-data-with-summarise" class="nav-link" data-scroll-target="#summarizing-data-with-summarise">Summarizing Data with <code>summarise()</code></a>
+  <li><a href="#summarizing-data-with-summarize" id="toc-summarizing-data-with-summarize" class="nav-link" data-scroll-target="#summarizing-data-with-summarize">Summarizing Data with <code>summarize()</code></a>
   <ul class="collapse">
-  <li><a href="#basic-usage-of-summarise" id="toc-basic-usage-of-summarise" class="nav-link" data-scroll-target="#basic-usage-of-summarise">Basic Usage of <code>summarise()</code></a></li>
+  <li><a href="#basic-usage-of-summarize" id="toc-basic-usage-of-summarize" class="nav-link" data-scroll-target="#basic-usage-of-summarize">Basic Usage of <code>summarize()</code></a></li>
   <li><a href="#grouped-summaries" id="toc-grouped-summaries" class="nav-link" data-scroll-target="#grouped-summaries">Grouped Summaries</a></li>
-  <li><a href="#multiple-summary-functions" id="toc-multiple-summary-functions" class="nav-link" data-scroll-target="#multiple-summary-functions">Multiple Summary Functions</a></li>
-  <li><a href="#using-summarise-with-mutate" id="toc-using-summarise-with-mutate" class="nav-link" data-scroll-target="#using-summarise-with-mutate">Using <code>summarise()</code> with <code>mutate()</code></a></li>
-  </ul></li>
-  <li><a href="#data-visualization-with-ggplot2" id="toc-data-visualization-with-ggplot2" class="nav-link" data-scroll-target="#data-visualization-with-ggplot2">Data Visualization with <code>ggplot2</code></a>
-  <ul class="collapse">
-  <li><a href="#basics-of-ggplot2" id="toc-basics-of-ggplot2" class="nav-link" data-scroll-target="#basics-of-ggplot2">Basics of <code>ggplot2</code></a></li>
-  <li><a href="#creating-a-scatter-plot" id="toc-creating-a-scatter-plot" class="nav-link" data-scroll-target="#creating-a-scatter-plot">Creating a Scatter Plot</a></li>
-  <li><a href="#customizing-your-plot" id="toc-customizing-your-plot" class="nav-link" data-scroll-target="#customizing-your-plot">Customizing Your Plot</a></li>
-  <li><a href="#creating-a-bar-chart" id="toc-creating-a-bar-chart" class="nav-link" data-scroll-target="#creating-a-bar-chart">Creating a Bar Chart</a></li>
+  <li><a href="#multiple-summarize-functions" id="toc-multiple-summarize-functions" class="nav-link" data-scroll-target="#multiple-summarize-functions">Multiple <code>summarize</code> Functions</a></li>
+  <li><a href="#using-summarize-with-mutate" id="toc-using-summarize-with-mutate" class="nav-link" data-scroll-target="#using-summarize-with-mutate">Using <code>summarize()</code> with <code>mutate()</code></a></li>
   </ul></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
   </ul>
@@ -370,34 +369,33 @@ Levels: High Low Medium</code></pre>
 </div>
 </div>
 </section>
-<section id="data-frame-and-tibble" class="level3">
-<h3 class="anchored" data-anchor-id="data-frame-and-tibble">Data Frame and Tibble</h3>
-<p>A data frame is a table-like structure that can hold columns of different data types. A tibble is a modern take on the data frame, part of the <code>tidyverse</code>, designed to be more user-friendly. We will discuss more about this is the data cleaning section.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="list" class="level3">
 <h3 class="anchored" data-anchor-id="list">List</h3>
 <p>Lists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Eric Taylor"</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>), <span class="at">passed =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Eric Taylor"</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>), <span class="at">passed =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks.</p>
 </section>
+<section id="data-frame-and-tibble" class="level3">
+<h3 class="anchored" data-anchor-id="data-frame-and-tibble">Data Frame and Tibble</h3>
+<p>A data frame is a table-like structure that can hold columns of different data types. A tibble is a modern take on the data frame, part of the <code>tidyverse</code>, designed to be more user-friendly. We will discuss more about this is the data cleaning section.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="basic-r-operations" class="level2">
-<h2 class="anchored" data-anchor-id="basic-r-operations">Basic R Operations</h2>
+<section id="basic-r-operations" class="level3">
+<h3 class="anchored" data-anchor-id="basic-r-operations">Basic R Operations</h3>
 <p>Now, let’s look at the basic operations. First, R can be used as a simple calculator. Try typing <code>2 + 2</code> in the console. You can assign values to variables using <code>&lt;-</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
@@ -407,8 +405,8 @@ Levels: High Low Medium</code></pre>
 </div>
 </div>
 </section>
-<section id="vectors-and-data-frames" class="level2">
-<h2 class="anchored" data-anchor-id="vectors-and-data-frames">Vectors and Data Frames</h2>
+<section id="vectors" class="level3">
+<h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
 <p>Vectors are basic data structures in R that contain elements of the same type. Use the <code>c()</code> function to create a vector:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
@@ -417,30 +415,13 @@ Levels: High Low Medium</code></pre>
 <pre><code>[1] 1 2 3 4 5</code></pre>
 </div>
 </div>
-<p>A data frame is a table or a two-dimensional array-like structure. Let’s create a simple data frame:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Emma"</span>, <span class="st">"Rony"</span>, <span class="st">"Jostin"</span>, <span class="st">"David"</span>, <span class="st">"Alex"</span>),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">80</span>, <span class="dv">88</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  id   name score
-1  1   Emma    90
-2  2   Rony    80
-3  3 Jostin    88
-4  4  David   100
-5  5   Alex   100</code></pre>
-</div>
-</div>
+</section>
 </section>
 <section id="importing-data" class="level2">
 <h2 class="anchored" data-anchor-id="importing-data">Importing Data</h2>
 <p>R can read data from various sources. The <code>read_csv()</code> function from the readr package (part of the <code>tidyverse</code>) is commonly used for reading CSV files:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"path/to/your/file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"path/to/your/file.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Replace “path/to/your/file.csv” with the actual file path to a csv file.</p>
 </section>
@@ -451,7 +432,7 @@ Levels: High Low Medium</code></pre>
 <li><code>filter()</code>: Extracts a subset of rows based on conditions.</li>
 <li><code>select()</code>: Selects columns by name.</li>
 <li><code>mutate()</code>: Creates new columns or modifies existing ones.</li>
-<li><code>summarise()</code>: Summarizes multiple values into a single value.</li>
+<li><code>summarize()</code>: Summarizes multiple values into a single value.</li>
 </ul>
 <p>However, before we use the dplyr package, let’s understand the pipe operator.</p>
 <section id="pipe-operator" class="level3">
@@ -462,16 +443,16 @@ Levels: High Low Medium</code></pre>
 <h3 class="anchored" data-anchor-id="how-it-works">How It Works</h3>
 <p>Consider a simple example without the pipe operator:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15</code></pre>
 </div>
 </div>
 <p>With the pipe operator, the same operation looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15</code></pre>
 </div>
@@ -482,9 +463,9 @@ Levels: High Low Medium</code></pre>
 <h3 class="anchored" data-anchor-id="practical-example-with-dplyr">Practical Example with dplyr</h3>
 <p>Let’s revisit the dplyr package from earlier, now with an emphasis on understanding the pipe operator:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(score <span class="sc">&gt;</span> <span class="dv">85</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(score <span class="sc">&gt;</span> <span class="dv">85</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this example:</p>
 <ol type="1">
@@ -505,18 +486,16 @@ Levels: High Low Medium</code></pre>
 <p>The <code>mutate()</code> function allows you to create new columns in your data frame or change existing ones based on some operations or functions applied to the data. It’s particularly useful for feature engineering, calculating new metrics, or preparing your data for analysis.</p>
 <p>Let’s say we have a data frame <code>my_data_frame</code> that contains student IDs, names, and scores. We want to add a new column that shows whether each student passed based on their score, with a score of 85 or above considered a pass.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column 'passed' with boolean values: TRUE if score &gt;= 85, FALSE otherwise</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passed =</span> score <span class="sc">&gt;=</span> <span class="dv">85</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column 'passed' with boolean values: TRUE if score &gt;= 85, FALSE otherwise</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passed =</span> score <span class="sc">&gt;=</span> <span class="dv">85</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed
 1  1   Emma    90   TRUE
-2  2   Rony    80  FALSE
-3  3 Jostin    88   TRUE
-4  4  David   100   TRUE
-5  5   Alex   100   TRUE</code></pre>
+2  2   Rony    85   TRUE
+3  3 Jostin    88   TRUE</code></pre>
 </div>
 </div>
 <p>This will add a new column passed to my_data_frame, where each row will have <code>TRUE</code> if the student’s score is 85 or higher, and <code>FALSE</code> otherwise.</p>
@@ -524,18 +503,18 @@ Levels: High Low Medium</code></pre>
 <h4 class="anchored" data-anchor-id="modifying-existing-columns">Modifying Existing Columns</h4>
 <p>You can also use <code>mutate()</code> to modify existing columns. For example, suppose you want to standardize the scores (subtract the mean and divide by the standard deviation) for analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the 'score' column</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score_standardized =</span> (score <span class="sc">-</span> <span class="fu">mean</span>(score)) <span class="sc">/</span> <span class="fu">sd</span>(score))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the 'score' column</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">score_standardized =</span> (score <span class="sc">-</span> <span class="fu">mean</span>(score)) <span class="sc">/</span> <span class="fu">sd</span>(score)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized
-1  1   Emma    90   TRUE         -0.1875229
-2  2   Rony    80  FALSE         -1.3595410
-3  3 Jostin    88   TRUE         -0.4219265
-4  4  David   100   TRUE          0.9844952
-5  5   Alex   100   TRUE          0.9844952</code></pre>
+1  1   Emma    90   TRUE          0.9271726
+2  2   Rony    85   TRUE         -1.0596259
+3  3 Jostin    88   TRUE          0.1324532</code></pre>
 </div>
 </div>
 <p>This operation creates a new column <code>score_standardized</code> where each student’s score is standardized.</p>
@@ -544,182 +523,125 @@ Levels: High Low Medium</code></pre>
 <h4 class="anchored" data-anchor-id="using-multiple-mutate-operations">Using Multiple mutate() Operations</h4>
 <p>You can chain multiple operations within a single <code>mutate()</code> call. For example, if you wanted to add a column for the grade (A, B, C, etc.) based on the standardized score, you could do it within the same <code>mutate()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a grade column based on standardized scores</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">score_standardized =</span> (score <span class="sc">-</span> <span class="fu">mean</span>(score)) <span class="sc">/</span> <span class="fu">sd</span>(score),</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">case_when</span>(</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&gt;=</span> <span class="dv">1</span>  <span class="sc">~</span> <span class="st">"A"</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&gt;=</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"B"</span>,</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&lt;</span> <span class="dv">0</span>   <span class="sc">~</span> <span class="st">"C"</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a grade column based on standardized scores</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">score_standardized =</span> (score <span class="sc">-</span> <span class="fu">mean</span>(score)) <span class="sc">/</span> <span class="fu">sd</span>(score),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">case_when</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&gt;=</span> <span class="dv">1</span>  <span class="sc">~</span> <span class="st">"A"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&gt;=</span> <span class="dv">0</span>  <span class="sc">~</span> <span class="st">"B"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      score_standardized <span class="sc">&lt;</span> <span class="dv">0</span>   <span class="sc">~</span> <span class="st">"C"</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade
-1  1   Emma    90   TRUE         -0.1875229     C
-2  2   Rony    80  FALSE         -1.3595410     C
-3  3 Jostin    88   TRUE         -0.4219265     C
-4  4  David   100   TRUE          0.9844952     B
-5  5   Alex   100   TRUE          0.9844952     B</code></pre>
+1  1   Emma    90   TRUE          0.9271726     B
+2  2   Rony    85   TRUE         -1.0596259     C
+3  3 Jostin    88   TRUE          0.1324532     B</code></pre>
 </div>
 </div>
-<p>In this example, <code>case_when()</code> is used to assign grades: “A” for standardized scores &gt;= 1, “B” for scores &gt;= 0 and &lt; 1, and “C” for scores &lt; 0. This illustrates how <code>mutate()</code> can be used to perform multiple transformations simultaneously, enhancing the readability and efficiency of your data manipulation code.</p>
+<p>Here, <code>case_when()</code> is used to assign grades: “A” for standardized scores &gt;= 1, “B” for scores &gt;= 0 and &lt; 1, and “C” for scores &lt; 0. This illustrates how <code>mutate()</code> can be used to perform multiple transformations simultaneously, enhancing the readability and efficiency of your data manipulation code.</p>
 </section>
 </section>
 </section>
-<section id="summarizing-data-with-summarise" class="level2">
-<h2 class="anchored" data-anchor-id="summarizing-data-with-summarise">Summarizing Data with <code>summarise()</code></h2>
-<p>The <code>summarise()</code> function in <code>dplyr</code> is used to create summary statistics for a dataset or subsets of a dataset. This function can be particularly powerful when combined with <code>group_by()</code>, which groups the data frame by one or more variables.</p>
-<section id="basic-usage-of-summarise" class="level3">
-<h3 class="anchored" data-anchor-id="basic-usage-of-summarise">Basic Usage of <code>summarise()</code></h3>
-<p>Here’s how you can use <code>summarise()</code> to calculate the average (mean) score of all students in <code>my_data_frame</code>:</p>
+<section id="summarizing-data-with-summarize" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-data-with-summarize">Summarizing Data with <code>summarize()</code></h2>
+<p>The <code>summarize()</code> function in <code>dplyr</code> is used to create summary statistics for a dataset or subsets of a dataset. This function can be particularly powerful when combined with <code>group_by()</code>, which groups the data frame by one or more variables.</p>
+<section id="basic-usage-of-summarize" class="level3">
+<h3 class="anchored" data-anchor-id="basic-usage-of-summarize">Basic Usage of <code>summarize()</code></h3>
+<p>Here’s how you can use <code>summarize()</code> to calculate the average (mean) score of all students in <code>my_data_frame</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>average_score <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>average_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>average_score <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(score)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>average_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  mean_score
-1       91.6</code></pre>
+1   87.66667</code></pre>
 </div>
 </div>
 <p>This code calculates the mean of the <code>score</code> column and stores the result in a new data frame called <code>average_score</code> with a single column <code>mean_score</code>.</p>
 </section>
 <section id="grouped-summaries" class="level3">
 <h3 class="anchored" data-anchor-id="grouped-summaries">Grouped Summaries</h3>
-<p>To calculate the average score by a categorical variable (e.g., by a hypothetical <code>class</code> column), you first group the data by that variable using <code>group_by()</code>, then apply <code>summarise()</code>:</p>
+<p>To calculate the average score by a categorical variable (e.g., by a hypothetical <code>class</code> column), you first group the data by that variable using <code>group_by()</code>, then apply <code>summarize()</code>:</p>
 <p>First, let’s add a hypothetical class variable to our data frame to categorize students into two classes, “A” and “B”. We’ll use the mutate() function to accomplish this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">class =</span> <span class="fu">if_else</span>(id <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"A"</span>, <span class="st">"B"</span>))</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> <span class="fu">if_else</span>(id <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"A"</span>, <span class="st">"B"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>my_data_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade class
-1  1   Emma    90   TRUE         -0.1875229     C     B
-2  2   Rony    80  FALSE         -1.3595410     C     A
-3  3 Jostin    88   TRUE         -0.4219265     C     B
-4  4  David   100   TRUE          0.9844952     B     A
-5  5   Alex   100   TRUE          0.9844952     B     B</code></pre>
+1  1   Emma    90   TRUE          0.9271726     B     B
+2  2   Rony    85   TRUE         -1.0596259     C     A
+3  3 Jostin    88   TRUE          0.1324532     B     B</code></pre>
 </div>
 </div>
 <p>This code adds a new column <code>class</code> to <code>my_data_frame</code>, where students with an even id are assigned to class “A” and students with an odd id are assigned to class “B”.</p>
 <p>Now that we have a class variable, we can calculate the average score for each class:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>average_score_by_class <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>average_score_by_class</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>average_score_by_class <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>average_score_by_class</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   class mean_score
   &lt;chr&gt;      &lt;dbl&gt;
-1 A           90  
-2 B           92.7</code></pre>
+1 A             85
+2 B             89</code></pre>
 </div>
 </div>
 <p>This will calculate the mean score for each class separately.</p>
 </section>
-<section id="multiple-summary-functions" class="level3">
-<h3 class="anchored" data-anchor-id="multiple-summary-functions">Multiple Summary Functions</h3>
-<p>You can also use <code>summarise()</code> to apply multiple summary functions at once. For example, to calculate the mean, median, and standard deviation of scores:</p>
+<section id="multiple-summarize-functions" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-summarize-functions">Multiple <code>summarize</code> Functions</h3>
+<p>You can also use <code>summarize()</code> to apply multiple summary functions at once. For example, to calculate the mean, median, and standard deviation of scores:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>summary_statistics <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(score),</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_score =</span> <span class="fu">median</span>(score),</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(score)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>summary_statistics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>summary_statistics <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(score),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_score =</span> <span class="fu">median</span>(score),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(score)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>summary_statistics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  mean_score median_score sd_score
-1       91.6           90 8.532292</code></pre>
+1   87.66667           88 2.516611</code></pre>
 </div>
 </div>
 </section>
-<section id="using-summarise-with-mutate" class="level3">
-<h3 class="anchored" data-anchor-id="using-summarise-with-mutate">Using <code>summarise()</code> with <code>mutate()</code></h3>
-<p>While <code>summarise()</code> reduces your data to a single summary row, <code>mutate()</code> can be used alongside to add summary columns to the original data frame. For example, adding a column with the mean score to each row:</p>
+<section id="using-summarize-with-mutate" class="level3">
+<h3 class="anchored" data-anchor-id="using-summarize-with-mutate">Using <code>summarize()</code> with <code>mutate()</code></h3>
+<p>While <code>summarize()</code> reduces your data to a single summary row, <code>mutate()</code> can be used alongside to add summary columns to the original data frame. For example, adding a column with the mean score to each row:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>my_data_frame_with_mean <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>my_data_frame_with_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>my_data_frame_with_mean <span class="ot">&lt;-</span> my_data_frame <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_score =</span> <span class="fu">mean</span>(score))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>my_data_frame_with_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id   name score passed score_standardized grade class mean_score
-1  1   Emma    90   TRUE         -0.1875229     C     B       91.6
-2  2   Rony    80  FALSE         -1.3595410     C     A       91.6
-3  3 Jostin    88   TRUE         -0.4219265     C     B       91.6
-4  4  David   100   TRUE          0.9844952     B     A       91.6
-5  5   Alex   100   TRUE          0.9844952     B     B       91.6</code></pre>
+1  1   Emma    90   TRUE          0.9271726     B     B   87.66667
+2  2   Rony    85   TRUE         -1.0596259     C     A   87.66667
+3  3 Jostin    88   TRUE          0.1324532     B     B   87.66667</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="data-visualization-with-ggplot2" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualization-with-ggplot2">Data Visualization with <code>ggplot2</code></h2>
-<p><code>ggplot2</code> is a part of the tidyverse that allows for creating complex and beautiful visualizations using a consistent and intuitive syntax. The name <code>ggplot2</code> is derived from the concept of the grammar of graphics, a system for describing and building a wide range of graphics.</p>
-<section id="basics-of-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="basics-of-ggplot2">Basics of <code>ggplot2</code></h3>
-<p>A <code>ggplot2</code> graph is built up from a few basic elements:</p>
-<ul>
-<li><strong>Data</strong>: The dataset you want to visualize.</li>
-<li><strong>Aesthetics (<code>aes</code>)</strong>: Defines how variables in the data are mapped to visual properties (aesthetics) of the graph such as x and y axes, color, size, etc.</li>
-<li><strong>Geometries (<code>geom_</code> functions)</strong>: The geometric objects (shapes) that represent the data points. For example, points (<code>geom_point()</code> for scatter plots), lines (<code>geom_line()</code>), and bars (<code>geom_bar()</code> for bar charts).</li>
-</ul>
-</section>
-<section id="creating-a-scatter-plot" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-scatter-plot">Creating a Scatter Plot</h3>
-<p>Let’s create a simple scatter plot to visualize the relationship between two variables in <code>my_data_frame</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data_frame, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> score)) <span class="sc">+</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="01-basics_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>In this example, <code>ggplot()</code> initializes the plot with the data frame <code>my_data_frame</code>, and <code>aes(x = id, y = score)</code> specifies that <code>id</code> should be on the x-axis and <code>score</code> on the y-axis. <code>geom_point()</code> adds points to represent each row in the dataset.</p>
-</section>
-<section id="customizing-your-plot" class="level3">
-<h3 class="anchored" data-anchor-id="customizing-your-plot">Customizing Your Plot</h3>
-<p><code>ggplot2</code> offers extensive customization options. For example, you can add titles and labels, change the theme, and modify the color of the points.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data_frame, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> score)) <span class="sc">+</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Student Scores"</span>, <span class="at">x =</span> <span class="st">"ID"</span>, <span class="at">y =</span> <span class="st">"Score"</span>) <span class="sc">+</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="01-basics_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>This adds a title to the plot, labels the x and y axes, changes the point color to blue, and applies a minimal theme for a cleaner look.</p>
-</section>
-<section id="creating-a-bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-bar-chart">Creating a Bar Chart</h3>
-<p>To create a bar chart showing students by score, you can use <code>geom_col()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data_frame, <span class="fu">aes</span>(<span class="at">y =</span> score, <span class="at">x =</span> <span class="fu">as.factor</span>(name))) <span class="sc">+</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Students by Score"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Score"</span>) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="01-basics_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Here, <code>as.factor(name)</code> is used to treat the name variable as a categorical variable. <code>geom_bar()</code> by default counts the number of occurrences of each unique value.</p>
-<p><code>ggplot2</code> is a versatile and powerful tool for creating visualizations in R. With its consistent syntax and comprehensive features, it allows you to construct a wide variety of graph types, from simple scatter plots to complex multi-layered graphics. As you become more familiar with <code>ggplot2</code>, you will discover its full potential for conveying information in a visual format.</p>
-<p>Certainly! Let’s add a section on the <code>summarise()</code> function from the <code>dplyr</code> package. <code>summarise()</code> is used to reduce each group of a data frame to a single summary value, making it essential for data analysis tasks such as calculating summaries (mean, median, sum, etc.) across groups.</p>
 </section>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
 <p>If you don’t understand a function, you can use the question mark and the function you would like to know more about, like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">mutate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">mutate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -960,6 +882,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">This website was built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
 
 
 
