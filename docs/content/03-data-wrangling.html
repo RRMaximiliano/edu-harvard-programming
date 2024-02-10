@@ -9,7 +9,7 @@
 <meta name="author" content="Rony Rodriguez-Ramirez">
 <meta name="dcterms.date" content="2024-02-02">
 
-<title>R for Education - Data Wrangling</title>
+<title>Programming for Education - Data Wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,6 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">R for Education</span>
+    <span class="navbar-title">Programming for Education</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -122,7 +124,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../content/01-basics.html" rel="" target="" aria-current="page">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">R Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/01-basics-stata.html" rel="" target="">
+ <span class="menu-text">Stata tutorials</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
@@ -189,25 +195,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/04-data-analysis.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../content/04-data-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4: Data analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/05-data-viz.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5: Data Visualization</span></a>
+  <a href="../content/05-data-summ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: Building Summary Statistics Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/06-data-summ.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6: Building Summary Statistics Tables</span></a>
+  <a href="../content/06-data-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/07-regex.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../content/07-regex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7: Regular Expressions</span></a>
   </div>
 </li>
@@ -713,13 +719,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
+    <div class="nav-footer-left">Original content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> by <a href="https://www.andrewheiss.com/">Andrew Heiss</a> <br> Additional content <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> by <a href="https://rrmaximiliano.github.io">Rony Rodriguez-Ramirez</a> <br> All content licensed under a <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> <i class="fa-brands fa-creative-commons-nc" aria-label="creative-commons-nc"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">This website was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="nav-footer-right">This website was built with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a>.<br> <a href="https://www.github.com/rrmaximiliano/edu-harvard-programming">View the source at <i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></div>
   </div>
 </footer>
 
