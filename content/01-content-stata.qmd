@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Stata: The Basics"
 author: "Rony Rodriguez-Ramirez"
-date: "2024-02-01"
+date: "2024-02-09"
 ---
 
 ```{r, echo=FALSE, message=FALSE}

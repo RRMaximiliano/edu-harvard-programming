@@ -80,4 +80,4 @@ format:
       - litera
       - html/custom.scss
     toc: true
-    highlight-style: dracula
+    highlight-style: oblivion
