@@ -13,9 +13,14 @@ format:
 course-logo: /files/img/logo.png
 ---
 
-::::: {.home}
+::: {.home}
 
 Hello, I'm Rony Rodriguez-Ramirez (G1), and this website is my personal project to provide PhD students in Education with tutorials, resources, and tools aimed at enhancing their research and academic skills. This initiative is designed to support your journey through the PhD program with practical and accessible learning materials.
+
+- {{< fa user >}} &nbsp; [{{< var instructor.name_no_title >}}]({{< var instructor.url >}})
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>
+- {{< fa brands twitter >}} &nbsp; [{{< var instructor.twitter >}}](https://www.twitter.com/{{< var instructor.twitter >}})
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< var instructor.appointment_url >}})
 
 ## About This Project
 
@@ -33,5 +38,5 @@ I've crafted these tutorials to cater to a broad spectrum of needs, from the bas
 
 Thank you for visiting, and I hope you find these resources helpful on your academic path!
 
-:::::
+:::
 

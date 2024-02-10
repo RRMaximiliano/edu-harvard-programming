@@ -33,12 +33,12 @@ website:
   page-footer:
     left: |
       Original content {{< fa brands creative-commons >}} by [{{< var attribution.name_no_title >}}]({{< var attribution.url >}}) <br>
-      Additional content by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
+      Additional content {{< fa brands creative-commons >}} by [{{< var instructor.name_no_title >}}]({{< var instructor.url >}}) <br>
       All content licensed under a {{< fa brands creative-commons >}}
       {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}
       [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
     right: |
-      This website was built with <a href="https://quarto.org/">Quarto</a>.<br>
+      This website was built with {{< fa brands r-project >}} and <a href="https://quarto.org/">Quarto</a>.<br>
       [View the source at {{< fa brands github >}} GitHub]({{< var course.github >}})
 
   sidebar:
