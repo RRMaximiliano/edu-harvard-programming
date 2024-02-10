@@ -167,7 +167,7 @@ knitr::kable(sum_table)
 
 ## Descriptive statistics: building your own functions
 
-In [tutorial 5](../content/05-data-summ.qmd), we will delve into more descriptive analysis but let's try first to use the knowledge we have gained from the three first tutorials.
+In [tutorial 5](../content/05-content.qmd), we will delve into more descriptive analysis but let's try first to use the knowledge we have gained from the three first tutorials.
 
 Let's create a function that is similar to the code we ran before:
 

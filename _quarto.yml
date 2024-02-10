@@ -18,9 +18,9 @@ website:
       - href: index.qmd
         text: Home
       - text: "R Tutorials"
-        file: content/01-basics.qmd
+        file: content/01-content.qmd
       - text: "Stata tutorials"
-        file: content/01-basics-stata.qmd
+        file: content/01-content-stata.qmd
       - icon: github
         menu:
           - text: Source Code
@@ -48,19 +48,19 @@ website:
         - section: "Content"
           contents:
           - text: "1: Intro to R"
-            file: content/01-basics.qmd
+            file: content/01-content.qmd
           - text: "2: Data cleaning"
-            file: content/02-data-cleaning.qmd
+            file: content/02-content.qmd
           - text: "3: Data wrangling"
-            file: content/03-data-wrangling.qmd
+            file: content/03-content.qmd
           - text: "4: Data analysis"
-            file: content/04-data-analysis.qmd  
+            file: content/04-content.qmd  
           - text: "5: Building Summary Statistics Tables"
-            file: content/05-data-summ.qmd               
+            file: content/05-content.qmd               
           - text: "6: Data Visualization"
-            file: content/06-data-viz.qmd
+            file: content/06-content.qmd
           - text: "7: Regular Expressions"
-            file: content/07-regex.qmd 
+            file: content/07-content.qmd 
 
     - title: "Stata Content"
       style: "docked"
@@ -70,7 +70,9 @@ website:
         - section: "Content"
           contents:
           - text: "1: Intro to Stata"
-            file: content/01-basics-stata.qmd
+            file: content/01-content-stata.qmd
+          - text: "2: Data exloration"
+            file: content/02-content-stata.qmd          
             
 format:
   html:
