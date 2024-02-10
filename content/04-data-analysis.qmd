@@ -173,7 +173,7 @@ Let's create a function that is similar to the code we ran before:
 
 ```{r summarize-function, paged.print = FALSE, eval = TRUE}
 sum_fun <- function(data, vars){
-	data |> #<<
+	data %>%  #<<
 		summarise(
 			across( {{vars}}, #<<
 				list(

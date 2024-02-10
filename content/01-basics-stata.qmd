@@ -8,9 +8,12 @@ date: "2024-02-01"
 library(Statamarkdown)
 library(knitr)
 stataexe <- "C:/Program Files/Stata18/StataMP-64.exe"
-knitr::opts_chunk$set(engine.path=list(stata=stataexe))
-knitr::opts_chunk$set(savedo=FALSE)
-
+knitr::opts_chunk$set(
+  error = TRUE,
+  cleanlog = FALSE,
+  savedo = FALSE,
+    engine.path = list(stata = stataexe)
+)
 hook_output <- knit_hooks$get("output")
 knit_hooks$set(output = function(x, options) {
   lines <- options$output.lines
@@ -43,12 +46,18 @@ When you open Stata, you'll see the main interface, which includes the Command w
 
 ## Loading your dataset
 
-Let's start by loading the census data using the `use` command:
+Let's start by loading the census data using the `syuse` command:
 
 ```{stata, cleanlog=FALSE, collectcode = TRUE}
-use "http://www.stata-press.com/data/r9/census.dta", clear 
+sysuse census, clear
 describe
 ```
+
+::: {.callout-tip}
+The `sysuse` command in Stata is designed for accessing datasets that come pre-installed with Stata, facilitating learning and demonstration without the need for external data. In contrast, the `use` command is utilized for loading user-provided datasets from the local filesystem or specified paths, serving as the primary method for importing data for analysis. 
+
+Essentially, `sysuse` accesses Stata's built-in examples, while `use` handles real-world data from external sources.
+:::
 
 The `describe` commmand produces a summary of the dataset in memory or of the data stored in a Stata-format dataset.
 
@@ -128,7 +137,7 @@ Stata offers a wide range of commands for data manipulation, including `filter` 
 
 `summarize` provides descriptive statistics for variables.
 
-```{stata, cleanlog=FALSE, output.lines=-(1:5)}
+```{stata, echo=1:2, output.lines=-(1:5)}
 * Summarizing population
 summarize pop
 ```
@@ -138,7 +147,7 @@ summarize pop
 
 In Stata, you use `keep` if or `drop` if to filter data.
 
-```{stata, cleanlog=FALSE, echo=FALSE, eval = FALSE}
+```{stata, echo=FALSE, eval = FALSE}
 * Dropping only observations from California
 drop if state == "California"
 ```
@@ -147,7 +156,7 @@ drop if state == "California"
 
 Use `generate` to create new variables and `replace` to modify existing ones.
 
-```{stata, cleanlog=FALSE, echo=FALSE, eval = FALSE}
+```{stata, echo=FALSE, eval = FALSE}
 * Creating a new variable
 replace state = "MA" if state == "California"
 ```
@@ -157,7 +166,7 @@ replace state = "MA" if state == "California"
 The `scatter` command, for example, is used for scatterplots and line graphs.
 
 
-```{stata, cleanlog=FALSE, echo=1:2, results="hide"}
+```{stata, echo=1:2, results="hide"}
 * Creating a simple scatterplot
 scatter pop death
 quietly graph export scatter.svg, replace

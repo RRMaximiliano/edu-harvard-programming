@@ -260,25 +260,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="loading-your-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="loading-your-dataset">Loading your dataset</h2>
-<p>Let’s start by loading the census data using the <code>use</code> command:</p>
+<p>Let’s start by loading the census data using the <code>syuse</code> command:</p>
 <div class="cell" data-collectcode="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"http://www.stata-press.com/data/r9/census.dta"</span>, <span class="kw">clear</span> </span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sysuse</span> census, <span class="kw">clear</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>. use "http://www.stata-press.com/data/r9/census.dta", clear 
+<pre><code>. sysuse census, clear
 
 (1980 Census data by state)
 
 . describe
 
-Contains data from http://www.stata-press.com/data/r9/census.dta
+Contains data from C:\PROGRA~1\Stata18\ado\base/c/census.dta
  Observations:            50                  1980 Census data by state
-    Variables:            12                  8 Jan 2005 16:32
+    Variables:            13                  6 Apr 2022 15:43
 -------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
 -------------------------------------------------------------------------------
 state           str14   %-14s                 State
+state2          str2    %-2s                  Two-letter state abbreviation
 region          int     %-8.0g     cenreg     Census region
 pop             long    %12.0gc               Population
 poplt5          long    %12.0gc               Pop, &lt; 5 year
@@ -294,6 +295,20 @@ divorce         long    %12.0gc               Number of divorces
 Sorted by: 
 
 . </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>sysuse</code> command in Stata is designed for accessing datasets that come pre-installed with Stata, facilitating learning and demonstration without the need for external data. In contrast, the <code>use</code> command is utilized for loading user-provided datasets from the local filesystem or specified paths, serving as the primary method for importing data for analysis.</p>
+<p>Essentially, <code>sysuse</code> accesses Stata’s built-in examples, while <code>use</code> handles real-world data from external sources.</p>
 </div>
 </div>
 <p>The <code>describe</code> commmand produces a summary of the dataset in memory or of the data stored in a Stata-format dataset.</p>
