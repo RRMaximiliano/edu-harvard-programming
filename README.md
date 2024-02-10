@@ -1,1 +1,17 @@
-# edu-harvard-intro-to-R
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# Introduction to Programming for PhD students, Harvard University
+
+To complete!
+
+## Acknowledgments
+
+This page is largely inspired by [Andrew
+Heiss’s](https://www.andrewheiss.com/) site for his class [Program
+Evaluation for Public
+Service](https://github.com/andrewheiss/evalf22.classes.andrewheiss.com)
+as well as [Matt Blackwell’s](https://www.mattblackwell.org/) site for
+his class [Gov 50](https://github.com/mattblackwell/gov50-f23-site/),
+and [Andreas de Barros](https://de-barros.com/) site for this class
+[EDUC 157](https://educ157.de-barros.com/)
