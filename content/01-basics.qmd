@@ -9,6 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+## Introduction
+
 Welcome to this introductory tutorial on R! R is a powerful language and environment for statistical computing and graphics. It offers a wide variety of statistical and graphical techniques and is highly extensible. One of the key features of R is its package ecosystem, the most notable of which is the tidyverse, a collection of packages designed for data science.
 
 This tutorial is designed for individuals with minimal statistical background. We will cover the basics of R, including how to install and load packages, import data, perform simple data manipulations, and create basic visualizations.
@@ -33,6 +35,18 @@ library(tidyverse)
 ``` 
 
 The first line will install the package, and the second will load the package to your current R session. After you install your package, you do not need to use the first line again in your scripts.
+
+## Assignment Operator (`<-`)
+
+The assignment operator `<-` is used to assign values to variables in R. It is considered more readable and is preferred over the `=` operator in the R community. There are debates regarding when we should use `=` instead of `<-` but I am leaving that out of this tutorial for now.
+
+### Example
+
+```{r}
+# Assigning value 10 to variable x
+x <- 10
+x
+```
 
 ## Understanding Data Types in R
 
@@ -90,12 +104,27 @@ my_date
 my_datetime
 ```
 
+### Vectors
+
+Vectors are basic data structures in R that contain elements of the same type. Use the `c()` function to create a vector:
+
+```{r}
+my_vector <- c(1, 2, 3, 4, 5)
+my_vector
+```
+
 ### List
 
 Lists in R can contain elements of different types, including numbers, strings, vectors, and even other lists.
 
 ```{r}
-my_list <- list(name = "Eric Taylor", scores = c(90, 85, 88), passed = TRUE)
+my_list <- list(
+  name   = "Eric Taylor", 
+  scores = c(90, 85, 88), 
+  passed = TRUE
+)
+
+my_list
 ```
 
 Each type has its specific purpose and a set of functions that operate on it, making it essential to choose the right type for your data analysis tasks.
@@ -120,45 +149,24 @@ my_tibble <- tibble(
 
 ### Basic R Operations
 
-Now, let's look at the basic operations. First, R can be used as a simple calculator. Try typing `2 + 2` in the console. You can assign values to variables using `<-`.
+Now, let's look at the basic operations. R can be used as a simple calculator. Try typing `2 + 2` in the console. You can assign values to variables using `<-`.
 
 ```{r}
 x <- 2 + 2
 x
 ```
 
-### Vectors
-
-Vectors are basic data structures in R that contain elements of the same type. Use the `c()` function to create a vector:
-
-```{r}
-my_vector <- c(1, 2, 3, 4, 5)
-my_vector
-```
-
-
 ## Importing Data
 
 R can read data from various sources. The `read_csv()` function from the readr package (part of the `tidyverse`) is commonly used for reading CSV files:
 
-```{r,eval=FALSE}
+```{r,eval = FALSE}
 my_data <- read_csv("path/to/your/file.csv")
 ```
 
-Replace "path/to/your/file.csv" with the actual file path to a csv file.
+Replace `"path/to/your/file.csv"` with the actual file path to a csv file.
 
-## Data Manipulation with `dplyr`
-
-The `dplyr` package offers a set of functions for manipulating data frames:
-
-- `filter()`: Extracts a subset of rows based on conditions.
-- `select()`: Selects columns by name.
-- `mutate()`: Creates new columns or modifies existing ones.
-- `summarize()`: Summarizes multiple values into a single value.
-
-However, before we use the dplyr package, let's understand the pipe operator.
-
-### Pipe operator
+## Pipe operator
 
 The pipe operator `%>%`, heavily used in tidyverse packages, allows you to pass the result of one expression as the first argument to the next expression. It's a powerful tool for chaining together a sequence of operations in a clear and concise manner. Instead of nesting functions or using intermediate variables, you can use the pipe operator to form a pipeline of operations.
 
@@ -180,9 +188,54 @@ c(1, 2, 3, 4, 5) %>%
 
 Although this is a simplistic example, it illustrates how `%>%` passes the left-hand side of the operator as the first argument to the function on the right-hand side. This becomes particularly useful with functions from the `dplyr` package for data manipulation.
 
-### Practical Example with dplyr
 
-Let's revisit the dplyr package from earlier, now with an emphasis on understanding the pipe operator:
+::: {.callout-tip title="Remember!"}
+"Piping" in R can be seen as "chaining." This means that we are invoking multiple method calls.
+
+```{r}
+#| eval: false
+# Pipe
+rony %>% 
+  wake_up(time = "5:30") %>% 
+  get_out_of_bed() %>% 
+  do_exercise() %>% 
+  shower() %>% 
+  get_dressed() %>% 
+  eat(meal = "breakfast", coffee = TRUE) %>% 
+  brush_teeth() %>%
+  work(effort = "mininum")
+
+# No pipe
+  work(
+    brush_teeth(
+      eat(
+        get_dressed(
+          shower(
+            do_exercise(
+              get_out_of_bed(
+                wake_up(rony, time = "5:30")
+              ), 
+            )
+          )
+        ), meal = "breakfast", coffee = TRUE
+      )
+    ), effort = "minimum"
+  )
+```
+:::
+
+## Data Manipulation with `dplyr`
+
+The `dplyr` package offers a set of functions for manipulating data frames. You do not have to load this package since it is already loaded within the tidyverse package.
+
+Let's look at the following functions:
+
+- `filter()`: Extracts a subset of rows based on conditions.
+- `select()`: Selects columns by name.
+- `mutate()`: Creates new columns or modifies existing ones.
+- `summarize()`: Summarizes multiple values into a single value.
+
+Image that I would like to have a filtered dataset that contains observations with scores higher than 85. I can run the following:
 
 ```{r}
 filtered_data <- my_data_frame %>%
@@ -192,7 +245,7 @@ filtered_data <- my_data_frame %>%
 
 In this example:
 
-1. `my_data_frame` is passed as the first argument to the `filter()` function, which filters rows where score > 85.
+1. `my_data_frame` is passed as the first argument to the `filter()` function, which filters rows where `score > 85`.
 2. The result of `filter()` is then passed as the first argument to `select()`, which keeps only the columns name and score.
 3. The final result is assigned to `filtered_data`.
 
@@ -220,9 +273,7 @@ my_data_frame
 
 This will add a new column passed to my_data_frame, where each row will have `TRUE` if the student's score is 85 or higher, and `FALSE` otherwise.
 
-#### Modifying Existing Columns
-
-You can also use `mutate()` to modify existing columns. For example, suppose you want to standardize the scores (subtract the mean and divide by the standard deviation) for analysis.
+Suppose you want to standardize the scores (subtract the mean and divide by the standard deviation) for analysis.
 
 ```{r}
 # Standardize the 'score' column
@@ -237,7 +288,7 @@ my_data_frame
 
 This operation creates a new column `score_standardized` where each student's score is standardized.
 
-#### Using Multiple mutate() Operations
+### Using Multiple mutate() Operations
 
 You can chain multiple operations within a single `mutate()` call. For example, if you wanted to add a column for the grade (A, B, C, etc.) based on the standardized score, you could do it within the same `mutate()`:
 
@@ -277,6 +328,8 @@ average_score
 
 This code calculates the mean of the `score` column and stores the result in a new data frame called `average_score` with a single column `mean_score`.
 
+Now, image that you have some observations with missing values for score. In that case, you would like to ignore those missing values when estimating the mean score. Therefore, instead of using `mean(score)` you can use the argument `na.rm = TRUE`, as follows: `mean(score, na.rm = TRUE)`.
+
 ### Grouped Summaries
 
 To calculate the average score by a categorical variable (e.g., by a hypothetical `class` column), you first group the data by that variable using `group_by()`, then apply `summarize()`:
@@ -299,14 +352,16 @@ Now that we have a class variable, we can calculate the average score for each c
 ```{r}
 average_score_by_class <- my_data_frame %>%
   group_by(class) %>%
-  summarize(mean_score = mean(score))
+  summarize(
+    mean_score = mean(score)
+  )
 
 average_score_by_class
 ```
 
 This will calculate the mean score for each class separately.
 
-### Multiple `summarize` Functions
+### Multiple functions within a `summarize`.
 
 You can also use `summarize()` to apply multiple summary functions at once. For example, to calculate the mean, median, and standard deviation of scores:
 
@@ -330,6 +385,59 @@ my_data_frame_with_mean <- my_data_frame %>%
   mutate(mean_score = mean(score))
 
 my_data_frame_with_mean
+```
+
+## Subset Operators
+
+R provides several operators for subsetting objects like vectors, lists, and data frames.
+
+### The `[ ]` Operator
+
+The `[ ]` operator is used for extracting elements from vectors, matrices, or data frames based on their indices or conditions.
+
+#### Example with Vector
+
+```{r}
+# Creating a vector
+vec <- c(1, 2, 3, 4, 5)
+
+# Subsetting the second element
+vec[2]
+```
+
+#### Example with Data Frame
+
+```{r}
+# Creating a data frame
+df <- data.frame(Name = c("Alice", "Bob", "Charlie"), Age = c(25, 30, 35))
+
+# Subsetting rows
+df[1:2, ]
+```
+
+### The `[[ ]]` Operator
+
+The `[[ ]]` operator is used to extract elements from a list or a single element from a data frame, allowing for nested subsetting in lists.
+
+#### Example with List
+
+```{r}
+# Creating a list
+lst <- list(name = "Alice", age = 25, scores = c(90, 80, 85))
+
+# Extracting a single element
+lst[[3]]
+```
+
+### The `$` Operator
+
+The `$` operator is used for extracting elements by name from lists or data frames, making it particularly useful for accessing columns in a data frame.
+
+#### Example with Data Frame
+
+```{r}
+# Accessing a column by name
+df$Name
 ```
 
 ## Getting Help

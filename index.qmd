@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R for PhD students in Education, Harvard University"
-subtitle: "Programming, Tools, R, and More"
+title: "Introduction to Programming for PhD students in Education, Harvard University"
+subtitle: "Programming, Tools, R, Stata, and More"
 details: |
   EDU • Spring 2024<br>HGSE, Harvard University
 sidebar: false
@@ -35,6 +35,3 @@ Thank you for visiting, and I hope you find these resources helpful on your acad
 
 :::::
 
-<footer>
-<p align="center">© 2024 Rony Rodriguez-Ramirez </p>
-</footer>

@@ -1,0 +1,203 @@
+---
+title: "Data Analysis"
+author: "Rony Rodriguez-Ramirez"
+date: "2024-02-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(fontawesome)
+```
+
+## Introduction
+
+A note on reproducible research:
+
+::: {.callout-warning title="Remember!"}
+### Anything that requires:
+- `r fa("paste", fill = "#ac142a")` Copy-pasting
+- `r fa("brush", fill = "#ac142a")` Manual formatting after exported
+
+### Reproducible
+`r fa("r-project", fill = "#046307")` R Markdown: dynamic document containing code and text that is exported directly from R into PDF, HTML, Word, Power Point and other formats 
+
+`r fa("file", fill= "#046307")` LaTeX: typesetting system used for scientific publications that automatically reloads tables and figures every time the document is rendered 
+
+  
+What is NOT reproducible? Anything that requires manual steps to update results in your final document after you update the data or the exact specification. This includes the terrible practice of printing results in the console and pasting them into Word, but also the much less terrible practice of exporting results to Excel and then manually formatting them and copying into Word.
+
+  
+The two best options to combine with R in terms of reproducibility are Markdown and LaTeX. Markdown is R's dyamic document framework and it's amazingly well developed. Most R advanced R users actually use Markdown to display their results instead of exporting tables and figures. I'm going to show you what that looks like, but this is a slightly more advanced topic that will not be covered on this course.
+
+LaTeX, on the other hand, is widely used among non-R users, and there are plenty of packages to export tables to it in Stata as well.
+
+But that's enough of me talking. Let's get you all to run some code
+
+:::
+
+
+We will use the `census` data for this tutorial: 
+
+* the `census` data that comes preloaded in Stata. For this, we are going to use the `haven` package.
+* the irony, right?
+
+```{r, warning = FALSE, message = FALSE}
+# Load packages
+library(tidyverse)
+library(haven)
+```
+
+**Exploratory Analysis**:
+
+Summary statistics appear in almost every research product
+    
+* Used to highlight central tendencies (means/medians)
+* Describe variation in data and comparison groups (SE/SD)
+* Indicate ranges and outliers (quantiles and observation numbers)
+  
+## Load data
+  
+Let's load and glimpse our data:
+
+```{r}
+census <- read_dta("http://www.stata-press.com/data/r9/census.dta")
+glimpse(census)
+```
+
+the `read_dta` function allows us to load dta format data (Stata). It comes from the `haven` package.
+
+::: {.callout-tip title="Tip!"}
+We can transform all "labelled" columns to factos in R using the following code:
+
+```{r}
+census <- census %>% 
+	mutate(
+		across(
+			haven::is.labelled,
+			~ as_factor(.x)
+		)
+	)
+```
+:::
+
+
+Let's say that you have selected the vars: pop, death, marriage, and divorce. Let's select those variable and assigned to a new object and call it `census2`
+
+```{r}
+census <- census %>% 
+  select(pop, death, marriage, divorce)
+```
+
+## Using the `summary` function
+
+```{r}
+summary(census)
+```
+
+- `summary()` can also be used with a single variable.
+- When used with continuous variables, it works similarly to `summarize` in Stata.
+- When used with categorical variables, it works similarly to `tabulate`.
+
+
+With the same variables we selected before pop, death, marriage, and divorce. Let's have the following stats: N, mean, sd, min, and max.
+
+```{r summarize-in}
+sum_table <- census %>% 
+	summarise(
+		n = sum(!is.na(pop)),
+		mean = mean(pop), 
+		sd = sd(pop), 
+		min = min(pop),
+		max = max(pop)
+	) 
+
+```
+
+```{r summarize-out, echo = FALSE, message = FALSE}
+knitr::kable(sum_table)
+```
+
+## Including more than 1 variable
+
+We can also used `across()`, to include more variables. However, this will join more columns to the table we exported in the last exercise. Therefore, we need to transform, _a little bit_ the output we get.
+* Can you detect any problem with the next code?
+
+```{r, eval=FALSE}
+census %>% 
+	summarise(
+		across(c(pop, marriage), 
+			list(
+				n    = ~sum(!is.na(.x)),
+				mean = ~mean(.x), 
+				sd   = ~sd(.x), 
+				min  = ~min(.x),
+				max  = ~max(.x)
+			)
+		)
+	)
+```
+
+The last code will have 2 (variables) times 5 (stats) columns. We don't want that. Therefore, let's adjust it as follows:
+
+
+```{r summarize-pivot-in}
+sum_table <- census %>% 
+	summarise(
+		across(c(pop, marriage), 
+			list(
+				n    = ~sum(!is.na(.x)),
+				mean = ~mean(.x), 
+				sd   = ~sd(.x), 
+				min  = ~min(.x),
+				max  = ~max(.x)
+			)
+		)
+	) |> 
+	pivot_longer(everything()) %>% #<<
+	separate(name, sep = "_", into = c("var", "stat")) %>% #<<
+	pivot_wider( #<<
+		names_from = "stat", values_from = "value" #<<
+	) #<<
+```
+
+```{r summarize-pivot-out, echo = FALSE, message = FALSE}
+knitr::kable(sum_table)
+```
+
+## Descriptive statistics: building your own functions
+
+In [tutorial 5](../content/05-data-summ.qmd), we will delve into more descriptive analysis but let's try first to use the knowledge we have gained from the three first tutorials.
+
+Let's create a function that is similar to the code we ran before:
+
+```{r summarize-function, paged.print = FALSE, eval = TRUE}
+sum_fun <- function(data, vars){
+	data |> #<<
+		summarise(
+			across( {{vars}}, #<<
+				list(
+					n    = ~sum(!is.na(.x)),
+					mean = ~mean(.x), 
+					sd   = ~sd(.x), 
+					min  = ~min(.x),
+					max  = ~max(.x)
+				)
+			)
+		) |> 
+		pivot_longer(everything()) %>% 
+		separate(name, sep = "_", into = c("var", "stat")) %>% 
+		pivot_wider(names_from = "stat", values_from = "value")
+}
+
+```
+
+With your new function `sum_fun()`, you can now call it anytime when you need it:
+
+```{r}
+sum_fun(census, c(pop, marriage, death))
+```
+
+```{r,echo=FALSE}
+knitr::kable(sum_fun(census, c(pop, marriage, death)))
+```

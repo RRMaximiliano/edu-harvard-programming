@@ -1,0 +1,14 @@
+{
+  "hash": "bdfe300b7e868e69e911a9c7d033ee7f",
+  "result": {
+    "markdown": "---\ntitle: \"Introduction to Stata: The Basics\"\nauthor: \"Rony Rodriguez-Ramirez\"\ndate: \"2024-02-01\"\n---\n\n\n\n\n## Introduction\n\nIn construction!",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

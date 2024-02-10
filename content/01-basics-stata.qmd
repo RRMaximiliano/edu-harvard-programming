@@ -1,0 +1,9 @@
+---
+title: "Introduction to Stata: The Basics"
+author: "Rony Rodriguez-Ramirez"
+date: "2024-02-01"
+---
+
+## Introduction
+
+In construction!

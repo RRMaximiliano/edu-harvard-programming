@@ -1,5 +1,5 @@
 ---
-title: "Data Cleaning and Analysis with tidyverse:<br>First Part"
+title: "Data Cleaning with the tidyverse"
 author: "Rony Rodriguez-Ramirez"
 date: "2024-02-02"
 ---
@@ -9,14 +9,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-Building on the basics of R and the tidyverse, this tutorial delves into more complex data cleaning and analysis techniques. We'll tackle common challenges encountered with real-world data and explore ways to manipulate and analyze datasets to extract meaningful insights.
+## Introduction
 
-## Handling Missing Data
-
-Real-world datasets often come with missing values, which can significantly impact your analysis. Let's explore strategies to deal with missing data:
+Building on the basics of R and the tidyverse, this tutorial delves into more complex data cleaning and analysis techniques. We'll tackle common challenges encountered with real-world data and explore ways to manipulate and analyze datasets to extract meaningful insights. But first, let's see some differences between some data frames:
 
 ### Identifying Missing Values
-
 
 In the tidyverse, `tibble()` and `tribble()` are functions that create a more modern take on the data frame. They are part of the `tibble` package and offer several advantages over the base R `data.frame` for data analysis and manipulation (the one we saw in the basics tutorial. Here's a brief overview of each and how they compare to traditional data frames.
 
@@ -67,7 +64,9 @@ While `data.frame` is the base R structure for storing tabular data, `tibble` an
 
 In summary, `tibble()` and `tribble()` offer a modern, tidyverse-optimized approach to data frames, making data manipulation and exploration in R more intuitive and less prone to common data analysis pitfalls.
 
-Let's go back to our data cleaning tutorial and let's first create a dataset with missing values:
+## Handling Missing Data
+
+Real-world datasets often come with missing values, which can significantly impact your analysis. Let's explore strategies to deal with missing data. First, let's create a dataframe and call it `data` using the `tribble` function:
 
 ```{r}
 # Load sample data
@@ -85,6 +84,42 @@ data %>%
   filter(is.na(value))
 ```
 
+In this case, the condition is `is.na(value)`. The `is.na()` function checks for `NA` (missing) values in its argument. So, `is.na(value)` returns TRUE for each element in the value column that is missing (i.e., is `NA`) and `FALSE` for each element that is not missing.
+
+The `filter(is.na(value))` command, therefore, retains only those rows in the data where the value column has missing (NA) values. All other rows where the value column does not have missing values are excluded from the output. Sometimes (most of the time) we would like to return only the data without missing values, so we can negate the function `is.na` with `!`
+
+```{r}
+# Keeping only the rows with no missing values
+data %>% 
+  filter(!is.na(value))
+```
+
+## Counting unique categories
+
+One common task is to quantify how many times each category occurs within a dataset. This not only helps in identifying patterns or imbalances among categories but also aids in data preprocessing and cleaning by highlighting potential anomalies or errors in categorical data. In the following example, we will use the `count()` function on a dataframe `data`, targeting the `category` column. This approach enables us to efficiently count the number of occurrences of each unique value in the `category` column.
+
+```{r}
+# Counting (ocurrances) categories in the dataset.
+data %>% 
+  count(category)
+```
+
+The `distinct` function allows us to identify unique values present in the `category` column.
+
+```{r}
+# Identifying unique values
+data %>%
+  distinct(category)
+```
+
+For a rapid tally of these unique values, the `summarise` function can be employed, utilizing `n_distinct`.
+
+```{r}
+# Tallying unique values
+data %>%
+  summarise(n = n_distinct(category))
+```
+
 ### Imputing Missing Values
 
 ```{r}
@@ -95,58 +130,61 @@ data %>%
   )
 ```
 
+Here, I use the `mutate()` function to modify the `value` column, where the `if_else()` function checks each element of `value`: 
+
+- if an element is missing (`is.na(value)` returns `TRUE`), it is replaced with the mean of the `value` column (computed with `mean(value, na.rm = TRUE)`, where `na.rm = TRUE` ensures that missing values are ignored in the mean calculation);
+- if not missing, the original value is retained. This approach is commonly used in data preprocessing to handle missing data by filling in missing values with the mean, thus maintaining the dataset's size while addressing missingness without discarding any rows.
+
 ## Joining Datasets
 
 Often, you'll need to combine data from multiple sources. Here, we'll use `dplyr`'s join functions to merge datasets.
 
-### Example Datasets
+**Students and Departments Dataset**
 
 ```{r}
-# Create two sample datasets
+# Students data
 students <- tibble(
-  id = 1:3,
-  name = c("Emma", "Rony", "Jostin")
+  stu_id = c(1, 2, 3, 4),
+  stu_name = c("Emma", "Rony", "Jostin", "David"),
+  dept_id = c(2, 2, 3, 4)
 )
 
-scores <- tibble(
-  id = c(1, 2, 4),
-  score = c(88, 80, 75)
+# Departments data
+departments <- tibble(
+  dept_id = c(1, 2, 3, 4),
+  dept_name = c("Math", "EDU", "Science", "ECON")
 )
 ```
 
-### Inner Join
+### `left_join`
+
+```{r}
+# Include all students and their departments if available
+stu_dept <- left_join(students, departments, by = "dept_id")
+stu_dept
+```
+
+### `right_join`
+
+```{r}
+# Include all departments and any students in those departments
+dept_stu <- right_join(students, departments, by = "dept_id")
+dept_stu
+```
+
+### `full_join`
+
+```{r}
+# Include all students and all departments, matching where possible
+all_stu_dept <- full_join(students, departments, by = "dept_id")
+all_stu_dept
+```
+
+### `inner_join`
 
 ```{r}
 # Merge datasets to include only matching IDs
-inner_join(students, scores, by = "id")
-```
-
-## Exploratory Data Analysis (EDA)
-
-EDA is crucial for understanding the underlying patterns of your data. We'll use `ggplot2` for visualization.
-
-### Histograms
-
-Histograms are great for visualizing the distribution of a numerical variable:
-
-```{r}
-# Using the `scores` dataset
-ggplot(scores, aes(x = score)) +
-  geom_histogram(bins = 5, fill = "grey", color = "black") +
-  labs(title = "Distribution of Scores") +
-  theme_minimal()
-```
-
-### Boxplots
-
-Boxplots provide insights into the central tendency and spread of data, as well as outliers:
-
-```{r}
-# Using the `scores` dataset
-ggplot(scores, aes(x = "", y = score)) +
-  geom_boxplot(fill = "grey", color = "black") +
-  labs(title = "Score Spread") +
-  theme_minimal()
+inner_join(students, departments, by = "dept_id")
 ```
 
 

@@ -16,3 +16,11 @@ copyright_year: "2024"
 
 course:
   github: "https://www.github.com/rrmaximiliano/edu-harvard-intro-to-R"
+  
+attribution:
+  name: Dr. Andrew Heiss
+  name_no_title: Andrew Heiss
+  email: aheiss@gsu.edu
+  url: "https://www.andrewheiss.com/"
+  twitter: andrewheiss
+  github: andrewheiss  

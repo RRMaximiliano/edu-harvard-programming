@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/01-basics.html">Content</a></li><li class="breadcrumb-item"><a href="../content/06-data-summ.html">6: Building Summary Statistics Tables</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/01-basics.html">Content</a></li><li class="breadcrumb-item"><a href="../content/05-data-summ.html">5: Building Summary Statistics Tables</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -181,31 +181,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../content/02-data-cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2: Data cleaning – Part 1</span></a>
+ <span class="menu-text">2: Data cleaning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/03-data-cleaning-part-ii.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3: Data cleaning – Part 2</span></a>
+  <a href="../content/03-data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: Data wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/04-regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4: Regular Expressions</span></a>
+  <a href="../content/04-data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: Data analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/05-data-viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5: Data Visualization</span></a>
+  <a href="../content/05-data-summ.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5: Building Summary Statistics Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/06-data-summ.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">6: Building Summary Statistics Tables</span></a>
+  <a href="../content/06-data-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/07-regex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7: Regular Expressions</span></a>
   </div>
 </li>
       </ul>
@@ -424,12 +430,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">rand</td>
 <td style="text-align: right;">50</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.6</td>
 <td style="text-align: right;">0.3</td>
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.6</td>
 <td style="text-align: right;">1.0</td>
-<td style="text-align: right;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjbGFzcz0ic3ZnbGl0ZSIgd2lkdGg9IjQ4LjAwcHQiIGhlaWdodD0iMTIuMDBwdCIgdmlld2JveD0iMCAwIDQ4LjAwIDEyLjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgogICAgLnN2Z2xpdGUgbGluZSwgLnN2Z2xpdGUgcG9seWxpbmUsIC5zdmdsaXRlIHBvbHlnb24sIC5zdmdsaXRlIHBhdGgsIC5zdmdsaXRlIHJlY3QsIC5zdmdsaXRlIGNpcmNsZSB7CiAgICAgIGZpbGw6IG5vbmU7CiAgICAgIHN0cm9rZTogIzAwMDAwMDsKICAgICAgc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwogICAgICBzdHJva2UtbGluZWpvaW46IHJvdW5kOwogICAgICBzdHJva2UtbWl0ZXJsaW1pdDogMTAuMDA7CiAgICB9CiAgICAuc3ZnbGl0ZSB0ZXh0IHsKICAgICAgd2hpdGUtc3BhY2U6IHByZTsKICAgIH0KICA8L3N0eWxlPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0ic3Ryb2tlOiBub25lOyBmaWxsOiBub25lOyI+PC9yZWN0PjxkZWZzPjxjbGlwcGF0aCBpZD0iY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3Ij48cmVjdCB4PSIwLjAwIiB5PSIwLjAwIiB3aWR0aD0iNDguMDAiIGhlaWdodD0iMTIuMDAiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3KSI+CjwvZz48ZGVmcz48Y2xpcHBhdGggaWQ9ImNwTUM0d01IdzBPQzR3TUh3eUxqZzRmREV5TGpBdyI+PHJlY3QgeD0iMC4wMCIgeT0iMi44OCIgd2lkdGg9IjQ4LjAwIiBoZWlnaHQ9IjkuMTIiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd5TGpnNGZERXlMakF3KSI+PHJlY3QgeD0iMC4xMCIgeT0iNy45MSIgd2lkdGg9IjQuNjMiIGhlaWdodD0iMy43NSIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSI0Ljc0IiB5PSI2Ljk3IiB3aWR0aD0iNC42MyIgaGVpZ2h0PSI0LjY5IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjkuMzciIHk9IjkuNzkiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjEuODgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMTQuMDAiIHk9IjcuOTEiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjMuNzUiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMTguNjMiIHk9IjUuMDkiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjYuNTciIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMjMuMjciIHk9IjguODUiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjIuODEiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMjcuOTAiIHk9IjMuMjIiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjguNDQiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMzIuNTMiIHk9IjQuMTYiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjcuNTEiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMzcuMTYiIHk9IjkuNzkiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjEuODgiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iNDEuNzkiIHk9IjYuMDMiIHdpZHRoPSI0LjYzIiBoZWlnaHQ9IjUuNjMiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PC9nPjwvc3ZnPg==" class="svglite img-fluid"></td>
+<td style="text-align: right;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjbGFzcz0ic3ZnbGl0ZSIgd2lkdGg9IjQ4LjAwcHQiIGhlaWdodD0iMTIuMDBwdCIgdmlld2JveD0iMCAwIDQ4LjAwIDEyLjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgogICAgLnN2Z2xpdGUgbGluZSwgLnN2Z2xpdGUgcG9seWxpbmUsIC5zdmdsaXRlIHBvbHlnb24sIC5zdmdsaXRlIHBhdGgsIC5zdmdsaXRlIHJlY3QsIC5zdmdsaXRlIGNpcmNsZSB7CiAgICAgIGZpbGw6IG5vbmU7CiAgICAgIHN0cm9rZTogIzAwMDAwMDsKICAgICAgc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwogICAgICBzdHJva2UtbGluZWpvaW46IHJvdW5kOwogICAgICBzdHJva2UtbWl0ZXJsaW1pdDogMTAuMDA7CiAgICB9CiAgICAuc3ZnbGl0ZSB0ZXh0IHsKICAgICAgd2hpdGUtc3BhY2U6IHByZTsKICAgIH0KICA8L3N0eWxlPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0ic3Ryb2tlOiBub25lOyBmaWxsOiBub25lOyI+PC9yZWN0PjxkZWZzPjxjbGlwcGF0aCBpZD0iY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3Ij48cmVjdCB4PSIwLjAwIiB5PSIwLjAwIiB3aWR0aD0iNDguMDAiIGhlaWdodD0iMTIuMDAiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3KSI+CjwvZz48ZGVmcz48Y2xpcHBhdGggaWQ9ImNwTUM0d01IdzBPQzR3TUh3eUxqZzRmREV5TGpBdyI+PHJlY3QgeD0iMC4wMCIgeT0iMi44OCIgd2lkdGg9IjQ4LjAwIiBoZWlnaHQ9IjkuMTIiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd5TGpnNGZERXlMakF3KSI+PHJlY3QgeD0iMC44MiIgeT0iNS4zMyIgd2lkdGg9IjQuNjUiIGhlaWdodD0iNi4zMyIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSI1LjQ4IiB5PSI3LjQ0IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI0LjIyIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjEwLjEzIiB5PSI5LjU1IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSIyLjExIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjE0Ljc5IiB5PSI4LjUwIiB3aWR0aD0iNC42NSIgaGVpZ2h0PSIzLjE3IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjE5LjQ0IiB5PSI2LjM4IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI1LjI4IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjI0LjEwIiB5PSI3LjQ0IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI0LjIyIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjI4Ljc1IiB5PSI0LjI3IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI3LjM5IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjMzLjQwIiB5PSI2LjM4IiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI1LjI4IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjM4LjA2IiB5PSI1LjMzIiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI2LjMzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjQyLjcxIiB5PSIzLjIyIiB3aWR0aD0iNC42NSIgaGVpZ2h0PSI4LjQ0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjwvZz48L3N2Zz4=" class="svglite img-fluid"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">treatment</td>
@@ -440,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: right;">1.0</td>
-<td style="text-align: right;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjbGFzcz0ic3ZnbGl0ZSIgd2lkdGg9IjQ4LjAwcHQiIGhlaWdodD0iMTIuMDBwdCIgdmlld2JveD0iMCAwIDQ4LjAwIDEyLjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgogICAgLnN2Z2xpdGUgbGluZSwgLnN2Z2xpdGUgcG9seWxpbmUsIC5zdmdsaXRlIHBvbHlnb24sIC5zdmdsaXRlIHBhdGgsIC5zdmdsaXRlIHJlY3QsIC5zdmdsaXRlIGNpcmNsZSB7CiAgICAgIGZpbGw6IG5vbmU7CiAgICAgIHN0cm9rZTogIzAwMDAwMDsKICAgICAgc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwogICAgICBzdHJva2UtbGluZWpvaW46IHJvdW5kOwogICAgICBzdHJva2UtbWl0ZXJsaW1pdDogMTAuMDA7CiAgICB9CiAgICAuc3ZnbGl0ZSB0ZXh0IHsKICAgICAgd2hpdGUtc3BhY2U6IHByZTsKICAgIH0KICA8L3N0eWxlPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0ic3Ryb2tlOiBub25lOyBmaWxsOiBub25lOyI+PC9yZWN0PjxkZWZzPjxjbGlwcGF0aCBpZD0iY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3Ij48cmVjdCB4PSIwLjAwIiB5PSIwLjAwIiB3aWR0aD0iNDguMDAiIGhlaWdodD0iMTIuMDAiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3KSI+CjwvZz48ZGVmcz48Y2xpcHBhdGggaWQ9ImNwTUM0d01IdzBPQzR3TUh3eUxqZzRmREV5TGpBdyI+PHJlY3QgeD0iMC4wMCIgeT0iMi44OCIgd2lkdGg9IjQ4LjAwIiBoZWlnaHQ9IjkuMTIiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd5TGpnNGZERXlMakF3KSI+PHJlY3QgeD0iMS43OCIgeT0iNS4wMyIgd2lkdGg9IjguODkiIGhlaWdodD0iNi42MyIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSIxMC42NyIgeT0iMTEuNjYiIHdpZHRoPSI4Ljg5IiBoZWlnaHQ9IjAuMDAiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMTkuNTYiIHk9IjExLjY2IiB3aWR0aD0iOC44OSIgaGVpZ2h0PSIwLjAwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjI4LjQ0IiB5PSIxMS42NiIgd2lkdGg9IjguODkiIGhlaWdodD0iMC4wMCIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSIzNy4zMyIgeT0iMy4yMiIgd2lkdGg9IjguODkiIGhlaWdodD0iOC40NCIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48L2c+PC9zdmc+" class="svglite img-fluid"></td>
+<td style="text-align: right;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjbGFzcz0ic3ZnbGl0ZSIgd2lkdGg9IjQ4LjAwcHQiIGhlaWdodD0iMTIuMDBwdCIgdmlld2JveD0iMCAwIDQ4LjAwIDEyLjAwIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgogICAgLnN2Z2xpdGUgbGluZSwgLnN2Z2xpdGUgcG9seWxpbmUsIC5zdmdsaXRlIHBvbHlnb24sIC5zdmdsaXRlIHBhdGgsIC5zdmdsaXRlIHJlY3QsIC5zdmdsaXRlIGNpcmNsZSB7CiAgICAgIGZpbGw6IG5vbmU7CiAgICAgIHN0cm9rZTogIzAwMDAwMDsKICAgICAgc3Ryb2tlLWxpbmVjYXA6IHJvdW5kOwogICAgICBzdHJva2UtbGluZWpvaW46IHJvdW5kOwogICAgICBzdHJva2UtbWl0ZXJsaW1pdDogMTAuMDA7CiAgICB9CiAgICAuc3ZnbGl0ZSB0ZXh0IHsKICAgICAgd2hpdGUtc3BhY2U6IHByZTsKICAgIH0KICA8L3N0eWxlPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0ic3Ryb2tlOiBub25lOyBmaWxsOiBub25lOyI+PC9yZWN0PjxkZWZzPjxjbGlwcGF0aCBpZD0iY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3Ij48cmVjdCB4PSIwLjAwIiB5PSIwLjAwIiB3aWR0aD0iNDguMDAiIGhlaWdodD0iMTIuMDAiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd3TGpBd2ZERXlMakF3KSI+CjwvZz48ZGVmcz48Y2xpcHBhdGggaWQ9ImNwTUM0d01IdzBPQzR3TUh3eUxqZzRmREV5TGpBdyI+PHJlY3QgeD0iMC4wMCIgeT0iMi44OCIgd2lkdGg9IjQ4LjAwIiBoZWlnaHQ9IjkuMTIiPjwvcmVjdD48L2NsaXBwYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY3BNQzR3TUh3ME9DNHdNSHd5TGpnNGZERXlMakF3KSI+PHJlY3QgeD0iMS43OCIgeT0iNi4wMyIgd2lkdGg9IjguODkiIGhlaWdodD0iNS42MyIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSIxMC42NyIgeT0iMTEuNjYiIHdpZHRoPSI4Ljg5IiBoZWlnaHQ9IjAuMDAiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDAuMzg7IGZpbGw6ICMwMDAwMDA7Ij48L3JlY3Q+PHJlY3QgeD0iMTkuNTYiIHk9IjExLjY2IiB3aWR0aD0iOC44OSIgaGVpZ2h0PSIwLjAwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiAwLjM4OyBmaWxsOiAjMDAwMDAwOyI+PC9yZWN0PjxyZWN0IHg9IjI4LjQ0IiB5PSIxMS42NiIgd2lkdGg9IjguODkiIGhlaWdodD0iMC4wMCIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48cmVjdCB4PSIzNy4zMyIgeT0iMy4yMiIgd2lkdGg9IjguODkiIGhlaWdodD0iOC40NCIgc3R5bGU9InN0cm9rZS13aWR0aDogMC4zODsgZmlsbDogIzAwMDAwMDsiPjwvcmVjdD48L2c+PC9zdmc+" class="svglite img-fluid"></td>
 </tr>
 </tbody>
 </table>

@@ -1,5 +1,5 @@
 ---
-title: "Data Cleaning and Analysis with tidyverse: Second Part"
+title: "Data Wrangling"
 author: "Rony Rodriguez-Ramirez"
 date: "2024-02-02"
 ---
@@ -10,54 +10,87 @@ library(tidyverse)
 ```
 
 
-# Introduction
+## Introduction
 
-In this tutorial, we delve into advanced data cleaning and analysis techniques focusing on student and department datasets. We will also demonstrate how to create custom functions in R to automate repetitive tasks in data analysis.
+In this tutorial, we delve into advanced data cleaning and analysis techniques focusing on student and department datasets. We will also demonstrate how to create custom functions in R to automate repetitive tasks in data analysis. We will delve into more sophisticated techniques such as reshaping data with `pivot_wider` and `pivot_longer`, and enhancing our data transformation skills with `mutate` across and the creation of custom functions. These methods are pivotal for preparing and analyzing data more effectively.
 
-## Merging Datasets
+## Reshaping Data
 
-We will start by merging datasets using `dplyr`'s join functions to combine student information with department details.
+Reshaping data is a common task in data analysis that involves changing the structure of your data to make it more suitable for analysis. `tidyverse` provides two primary functions for this purpose: `pivot_longer` and `pivot_wider`.
 
-### Students and Departments Dataset
+### Using `pivot_longer`
 
-```{r}
-# Students data
-students <- tibble(
-  stu_id = c(1, 2, 3, 4),
-  stu_name = c("Emma", "Rony", "Jostin", "David"),
-  dept_id = c(2, 2, 3, 4)
+When you have data in a wide format and want to make it longer, `pivot_longer` is your go-to function. It's especially useful for converting multiple columns into key-value pairs, making the data tidy.
+
+```{r pivot_longer_example}
+# Sample wide data
+wide_data <- tibble(
+  id = 1:3,
+  year_2018 = c(200, 150, 120),
+  year_2019 = c(220, 160, 130)
 )
 
-# Departments data
-departments <- tibble(
-  dept_id = c(1, 2, 3, 4),
-  dept_name = c("Math", "EDU", "Science", "ECON")
+# Converting wide data to long format
+long_data <- wide_data %>%
+  pivot_longer(
+    cols = starts_with("year"),
+    names_to = "year",
+    values_to = "value"
+  )
+long_data
+```
+
+### Using `pivot_wider`
+
+Conversely, `pivot_wider` is used to spread a key-value pair across multiple columns, transforming longer data into a wider format. This is particularly useful for making data more readable or preparing it for certain types of analysis.
+
+```{r pivot_wider_example}
+# Converting back to wide format
+wider_data <- long_data %>%
+  pivot_wider(
+    names_from = year,
+    values_from = value
+  )
+
+wider_data
+```
+
+## Enhancing Data Transformation with `mutate` and Custom Functions
+
+### Using `mutate` and `across`
+
+With `mutate` `across`, you can apply a function across multiple columns at once, streamlining the process of data manipulation.
+
+```{r mutate_across_example}
+# Applying a transformation across selected columns
+data <- tibble(
+  x1 = rnorm(5),
+  x2 = rnorm(5),
+  x3 = rnorm(5)
 )
+
+# Standardizing selected columns
+data <- data %>%
+  mutate(
+    across(
+      starts_with("x"), 
+      ~(.x - mean(.x)) / sd(.x),
+      .names = "std_{.col}"
+    )
+  )
 ```
 
-### `left_join`
+1. **`mutate()`**: This function is used to add new columns or transform existing ones in a dataframe. Here, it is combined with the `across()` function to apply a transformation across multiple columns.
+   
+2. **`across(starts_with("x"), ~(x. - mean(.x)) / sd(.x))`**: The `across()` function specifies which columns to operate on and the operation to perform:
+   
+   - **`starts_with("x")`**: This argument selects all columns whose names start with "x".
+   
+   - **`~(.x - mean(.x)) / sd(.x)`**: This formula calculates the z-score for each selected column. For each value in a column, it subtracts the mean of that column and then divides by the standard deviation of that column. The `.` symbol represents the current column's values being processed.
+   - The `.names = "std_{.col}"` argument in the `across()` function dynamically names new or transformed columns as `std_` followed by the original column name, indicating they have been standardized.
+   
+Essentially, the code standardizes the values of all columns in `data` that start with the letter "x", ensuring they have a mean of 0 and a standard deviation of 1, then updates `data` with these standardized columns. 
 
-```{r}
-# Include all students and their departments if available
-stu_dept <- left_join(students, departments, by = "dept_id")
-stu_dept
-```
-
-### `right_join`
-
-```{r}
-# Include all departments and any students in those departments
-dept_stu <- right_join(students, departments, by = "dept_id")
-dept_stu
-```
-
-### `full_join`
-
-```{r}
-# Include all students and all departments, matching where possible
-all_stu_dept <- full_join(students, departments, by = "dept_id")
-all_stu_dept
-```
 
 ## Creating Functions for Data Analysis
 
@@ -94,6 +127,14 @@ Assuming `students` is a dataset with a numeric column named `"math_scores"`, yo
 
 ```{r}
 # Example usage with a hypothetical numeric column in students dataset
+
+# Students data
+students <- tibble(
+  stu_id = c(1, 2, 3, 4),
+  stu_name = c("Emma", "Rony", "Jostin", "David"),
+  dept_id = c(2, 2, 3, 4)
+)
+
 # Let's merge a math_scores data first.
 scores <- tibble(
   stu_id = c(1, 2, 3, 4),
