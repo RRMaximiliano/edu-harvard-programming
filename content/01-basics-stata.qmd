@@ -4,6 +4,155 @@ author: "Rony Rodriguez-Ramirez"
 date: "2024-02-01"
 ---
 
+```{r, echo=FALSE, message=FALSE}
+library(Statamarkdown)
+stataexe <- "C:/Program Files/Stata18/StataMP-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+knitr::opts_chunk$set(savedo=FALSE)
+```
+
 ## Introduction
 
-In construction!
+Stata is a comprehensive statistical software package for data management, analysis, and graphics. It's widely used in research, particularly in the social sciences. This tutorial will guide you through the basics of Stata, including data manipulation, basic statistical analysis, and creating simple graphs.
+
+## Getting Started
+
+When you open Stata, you'll see the main interface, which includes the Command window, the Results window, the Variables window, and the Properties window. You can execute commands directly in the Command window or use do-files (scripts) for reproducibility.
+
+## Loading your dataset
+
+Let's start by loading the census data using the `use` command:
+
+```{stata, cleanlog=FALSE, collectcode = TRUE}
+use "http://www.stata-press.com/data/r9/census.dta", clear 
+describe
+```
+
+The `describe` commmand produces a summary of the dataset in memory or of the data stored in a Stata-format dataset.
+
+## Basic Commands
+
+### Generating new varianles
+
+In Stata, you can create new variables using the `generate` (or `gen` for short) command.
+
+#### Example
+
+```{stata, eval = FALSE}
+* Assigning value 10 to variable x
+gen x = 10
+```
+
+
+## Understanding Data Types in Stata
+
+Stata handles various data types, including numeric, string, and date. It automatically determines the appropriate type when data is loaded or generated.
+
+### Numeric
+
+Numeric variables in Stata can represent both integers and floating-point numbers.
+
+```{stata, eval=FALSE}
+* Defining numeric variables
+gen my_integer = 42
+gen my_double  = 42.5
+```
+
+Different from R, both variables here are "float."
+
+### String
+
+String variables are used for text and are defined using quotes.
+
+```{stata, eval=FALSE}
+* Defining a string variable
+gen my_string = "Hello, world! I love econometrics!"
+```
+
+### Date
+
+Date variables in Stata are numeric, with a specific format applied to display them as dates.
+
+```{stata, eval=FALSE}
+* Defining a date variable
+gen my_date = date("2024-01-01", "YMD")
+format my_date %td
+```
+
+
+## Basic Stata Operations
+
+Stata can perform calculations and data manipulations directly in the command line or through do-files.
+
+```{stata, eval=FALSE}
+* Simple calculation
+display 2 + 2
+```
+
+## Importing Data
+
+To import CSV files in Stata, use the `import delimited` command.
+
+```{stata, eval = FALSE}
+* Importing data from CSV
+import delimited "path/to/your/file.csv", clear
+```
+
+## Using Stata's Commands for Data Manipulation
+
+Stata offers a wide range of commands for data manipulation, including `filter` (conditions for keeping observations), `generate` and `replace` (for creating and modifying variables), and `summarize` (for basic descriptive statistics).
+
+### Summarizing Data
+
+`summarize` provides descriptive statistics for variables.
+
+```{stata, cleanlog=FALSE}
+* Summarizing population
+summarize pop
+```
+
+
+### Filtering Data
+
+In Stata, you use `keep` if or `drop` if to filter data.
+
+```{stata, cleanlog=FALSE, echo=FALSE, eval = FALSE}
+* Dropping only observations from California
+drop if state == "California"
+```
+
+### Modifying Variables
+
+Use `generate` to create new variables and `replace` to modify existing ones.
+
+```{stata, cleanlog=FALSE, echo=FALSE, eval = FALSE}
+* Creating a new variable
+replace state = "MA" if state == "California"
+```
+
+## Graphing
+
+The `scatter` command, for example, is used for scatterplots and line graphs.
+
+
+```{stata, cleanlog=FALSE, echo=1:2, results="hide"}
+* Creating a simple scatterplot
+scatter pop death
+quietly graph export scatter.svg, replace
+```
+
+![Pop ~ Death](scatter.svg)
+
+## Getting Help
+
+Stata has a comprehensive help system accessible through the `help` command.
+
+```{stata, cleanlog=FALSE, eval = FALSE}
+* Getting help on the summarize command
+help summarize
+```
+
+
+```{r cleanup, include=FALSE}
+unlink("scatter.svg")
+```

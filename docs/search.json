@@ -585,13 +585,90 @@
     "href": "content/01-basics-stata.html",
     "title": "Introduction to Stata: The Basics",
     "section": "",
-    "text": "In construction!"
+    "text": "Stata is a comprehensive statistical software package for data management, analysis, and graphics. It’s widely used in research, particularly in the social sciences. This tutorial will guide you through the basics of Stata, including data manipulation, basic statistical analysis, and creating simple graphs."
   },
   {
     "objectID": "content/01-basics-stata.html#introduction",
     "href": "content/01-basics-stata.html#introduction",
     "title": "Introduction to Stata: The Basics",
     "section": "",
-    "text": "In construction!"
+    "text": "Stata is a comprehensive statistical software package for data management, analysis, and graphics. It’s widely used in research, particularly in the social sciences. This tutorial will guide you through the basics of Stata, including data manipulation, basic statistical analysis, and creating simple graphs."
+  },
+  {
+    "objectID": "content/01-basics-stata.html#installing-stata",
+    "href": "content/01-basics-stata.html#installing-stata",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Installing Stata",
+    "text": "Installing Stata\nTo use Stata, you must first purchase and install it from the Stata website. Follow the installation instructions provided on their site."
+  },
+  {
+    "objectID": "content/01-basics-stata.html#getting-started",
+    "href": "content/01-basics-stata.html#getting-started",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Getting Started",
+    "text": "Getting Started\nWhen you open Stata, you’ll see the main interface, which includes the Command window, the Results window, the Variables window, and the Properties window. You can execute commands directly in the Command window or use do-files (scripts) for reproducibility."
+  },
+  {
+    "objectID": "content/01-basics-stata.html#basic-commands",
+    "href": "content/01-basics-stata.html#basic-commands",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Basic Commands",
+    "text": "Basic Commands\n\nGenerating new varianles\nIn Stata, you can create new variables using the generate (or gen for short) command.\n\nExample\n\n* Assigning value 10 to variable x\ngen x = 10"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#understanding-data-types-in-stata",
+    "href": "content/01-basics-stata.html#understanding-data-types-in-stata",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Understanding Data Types in Stata",
+    "text": "Understanding Data Types in Stata\nStata handles various data types, including numeric, string, and date. It automatically determines the appropriate type when data is loaded or generated.\n\nNumeric\nNumeric variables in Stata can represent both integers and floating-point numbers.\n\n* Defining numeric variables\ngen my_integer = 42\ngen my_double  = 42.5\n\nDifferent from R, both variables here are “float.”\n\n\nString\nString variables are used for text and are defined using quotes.\n\n* Defining a string variable\ngen my_string = \"Hello, world! I love econometrics!\"\n\n\n\nDate\nDate variables in Stata are numeric, with a specific format applied to display them as dates.\n\n* Defining a date variable\ngen my_date = date(\"2024-01-01\", \"YMD\")\nformat my_date %td"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#data-structures",
+    "href": "content/01-basics-stata.html#data-structures",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Data Structures",
+    "text": "Data Structures\nStata primarily uses datasets (data frames in R terminology) for data storage. Each row represents an observation and each column represents a variable."
+  },
+  {
+    "objectID": "content/01-basics-stata.html#basic-stata-operations",
+    "href": "content/01-basics-stata.html#basic-stata-operations",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Basic Stata Operations",
+    "text": "Basic Stata Operations\nStata can perform calculations and data manipulations directly in the command line or through do-files.\n\n* Simple calculation\ndisplay 2 + 2"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#importing-data",
+    "href": "content/01-basics-stata.html#importing-data",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Importing Data",
+    "text": "Importing Data\nTo import CSV files in Stata, use the import delimited command.\n\n* Importing data from CSV\nimport delimited \"path/to/your/file.csv\", clear"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#using-statas-commands-for-data-manipulation",
+    "href": "content/01-basics-stata.html#using-statas-commands-for-data-manipulation",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Using Stata’s Commands for Data Manipulation",
+    "text": "Using Stata’s Commands for Data Manipulation\nStata offers a wide range of commands for data manipulation, including filter (conditions for keeping observations), generate and replace (for creating and modifying variables), and summarize (for basic descriptive statistics).\n\nSummarizing Data\nsummarize provides descriptive statistics for variables.\n\n* Summarizing population\nsummarize pop\n\nRunning C:\\Users\\ifyou\\Documents\\GitHub\\edu-harvard-programming\\content\\profile\n\n&gt; .do ...\n\n\n. * Summarizing population\n. summarize pop\n\n    Variable |        Obs        Mean    Std. dev.       Min        Max\n-------------+---------------------------------------------------------\n         pop |         50     4518149     4715038     401851   2.37e+07\n\n. \n\n\n\n\nFiltering Data\nIn Stata, you use keep if or drop if to filter data.\n\n\nModifying Variables\nUse generate to create new variables and replace to modify existing ones."
+  },
+  {
+    "objectID": "content/01-basics-stata.html#graphing",
+    "href": "content/01-basics-stata.html#graphing",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Graphing",
+    "text": "Graphing\nThe scatter command, for example, is used for scatterplots and line graphs.\n\n* Creating a simple scatterplot\nscatter pop death\n\n\n\n\nPop ~ Death"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#getting-help",
+    "href": "content/01-basics-stata.html#getting-help",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Getting Help",
+    "text": "Getting Help\nStata has a comprehensive help system accessible through the help command.\n\n* Getting help on the summarize command\nhelp summarize"
+  },
+  {
+    "objectID": "content/01-basics-stata.html#loading-your-dataset",
+    "href": "content/01-basics-stata.html#loading-your-dataset",
+    "title": "Introduction to Stata: The Basics",
+    "section": "Loading your dataset",
+    "text": "Loading your dataset\nLet’s start by loading the census data using the use command:\n\nuse \"http://www.stata-press.com/data/r9/census.dta\", clear \ndescribe\n\n. use \"http://www.stata-press.com/data/r9/census.dta\", clear \n\n(1980 Census data by state)\n\n. describe\n\nContains data from http://www.stata-press.com/data/r9/census.dta\n Observations:            50                  1980 Census data by state\n    Variables:            12                  8 Jan 2005 16:32\n-------------------------------------------------------------------------------\nVariable      Storage   Display    Value\n    name         type    format    label      Variable label\n-------------------------------------------------------------------------------\nstate           str14   %-14s                 State\nregion          int     %-8.0g     cenreg     Census region\npop             long    %12.0gc               Population\npoplt5          long    %12.0gc               Pop, &lt; 5 year\npop5_17         long    %12.0gc               Pop, 5 to 17 years\npop18p          long    %12.0gc               Pop, 18 and older\npop65p          long    %12.0gc               Pop, 65 and older\npopurban        long    %12.0gc               Urban population\nmedage          float   %9.2f                 Median age\ndeath           long    %12.0gc               Number of deaths\nmarriage        long    %12.0gc               Number of marriages\ndivorce         long    %12.0gc               Number of divorces\n-------------------------------------------------------------------------------\nSorted by: \n\n. \n\n\nThe describe commmand produces a summary of the dataset in memory or of the data stored in a Stata-format dataset."
   }
 ]
