@@ -6,9 +6,31 @@ date: "2024-02-01"
 
 ```{r, echo=FALSE, message=FALSE}
 library(Statamarkdown)
+library(knitr)
 stataexe <- "C:/Program Files/Stata18/StataMP-64.exe"
 knitr::opts_chunk$set(engine.path=list(stata=stataexe))
 knitr::opts_chunk$set(savedo=FALSE)
+
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
 ```
 
 ## Introduction
@@ -106,7 +128,7 @@ Stata offers a wide range of commands for data manipulation, including `filter` 
 
 `summarize` provides descriptive statistics for variables.
 
-```{stata, cleanlog=FALSE}
+```{stata, cleanlog=FALSE, output.lines=-(1:5)}
 * Summarizing population
 summarize pop
 ```
