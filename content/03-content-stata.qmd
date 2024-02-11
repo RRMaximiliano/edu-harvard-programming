@@ -1,0 +1,84 @@
+---
+title: "Unique ID and duplicates"
+author: "Rony Rodriguez-Ramirez"
+date: "2024-02-10"
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(Statamarkdown)
+library(knitr)
+stataexe <- "C:/Program Files/Stata18/StataMP-64.exe"
+knitr::opts_chunk$set(
+  error = TRUE,
+  cleanlog = FALSE,
+  savedo = FALSE,
+    engine.path = list(stata = stataexe)
+)
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+```
+
+## Introduction
+
+Now, Let's try to thoroughly understand datasets right after their importation. The exploration process is initiated by pinpointing two pivotal elements: 
+
+- The unit of observation and a unique, fully identifying ID variable. 
+- The former refers to the entity or object being described by the dataset, whereas the latter distinguishes each observation uniquely, ensuring no duplicates or missing entries exist.
+
+:::{.callout-tip title="Unique ID"}
+A unique identifier plays a critical role in maintaining the integrity of the dataset. It prevents the overrepresentation of any data point and facilitates the seamless merging of various datasets, enhancing the breadth of analysis. Identifying the dataset's unit of observation alongside its ID variable lays the groundwork for a comprehensive examination.
+:::
+
+To ascertain the uniqueness and completeness of an ID variable, Stata has two commands: `isid` and `duplicates`. The `isid` command examines whether a set of variables can uniquely identify every observation in the dataset. On the other hand, the `duplicates` command identifies, labels, or removes duplicate records, thus ensuring the dataset's cleanliness.
+
+Let's use again our `fake_scores` dataset from our last two tutorials. Now, to verify if `studentid` serves as a unique identifier, one could use:
+
+```{stata, collectcode = TRUE, results = "hide", include = FALSE}
+use "../files/data/fake_scores.dta", clear
+```
+
+```{stata, eval = FALSE}
+* Load your dataset
+use "fake_scores.dta", clear
+
+* Check if studentid uniquely identify the observations.
+isid studentid
+```
+
+This should return you an error. Why? Because we have a long formatted dataset. Let's include two variable then to verify if we have the correct level of analysis. Let's run:
+
+```{stata, output.lines=-(1:5)}
+isid course studentid 
+```
+
+Now, you should not get an error. Since you got no "output" that means that we have a dataset at the level of course-student. 
+
+Another way to look at whether we have the correct level of analysis is by using the `duplicates` command. 
+
+```{stata, output.lines=-(1:5)}
+duplicates report studentid 
+duplicates tag studentid, gen(dup_name)
+tab dup_name
+```
+
+Initially, `duplicates report` scrutinizes the dataset for duplicates of `studentid`, providing a detailed account of duplication. Following this, `duplicates tag` assigns a unique tag to each observation in the new variable `dup_name`, distinguishing between unique entries and various levels of duplication. Finally, `tab dup_name` tabulates these tags, offering a summary of the distribution of unique and duplicated `studentid` records. 
+
+

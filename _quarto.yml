@@ -71,13 +71,17 @@ website:
           contents:
           - text: "1: Intro to Stata"
             file: content/01-content-stata.qmd
-          - text: "2: Data exloration"
-            file: content/02-content-stata.qmd          
+          - text: "2: Data exploration"
+            file: content/02-content-stata.qmd    
+          - text: "2: Unique IDs and Duplicates"
+            file: content/03-content-stata.qmd            
             
 format:
   html:
+    grid: 
+      sidebar-width: 350px
     theme:
-      - litera
+      - sandstone
       - html/custom.scss
     toc: true
     highlight-style: oblivion

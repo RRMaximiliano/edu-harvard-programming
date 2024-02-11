@@ -9,7 +9,7 @@
 <meta name="author" content="Rony Rodriguez-Ramirez">
 <meta name="dcterms.date" content="2024-02-10">
 
-<title>Programming for Education - Exploring data in Stata</title>
+<title>Programming for Education - Unique ID and duplicates</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/01-content-stata.html">Content</a></li><li class="breadcrumb-item"><a href="../content/02-content-stata.html">2: Data exploration</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/01-content-stata.html">Content</a></li><li class="breadcrumb-item"><a href="../content/03-content-stata.html">2: Unique IDs and Duplicates</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -182,13 +182,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/02-content-stata.html" class="sidebar-item-text sidebar-link active">
+  <a href="../content/02-content-stata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2: Data exploration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/03-content-stata.html" class="sidebar-item-text sidebar-link">
+  <a href="../content/03-content-stata.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2: Unique IDs and Duplicates</span></a>
   </div>
 </li>
@@ -205,18 +205,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#viewing-a-dataset" id="toc-viewing-a-dataset" class="nav-link" data-scroll-target="#viewing-a-dataset">Viewing a dataset</a>
-  <ul class="collapse">
-  <li><a href="#useful-commands-to-explore-data-sets" id="toc-useful-commands-to-explore-data-sets" class="nav-link" data-scroll-target="#useful-commands-to-explore-data-sets">Useful commands to explore data sets</a></li>
-  <li><a href="#exploring-a-data-set" id="toc-exploring-a-data-set" class="nav-link" data-scroll-target="#exploring-a-data-set">Exploring a data set</a></li>
-  <li><a href="#exploring-a-data-set-describe" id="toc-exploring-a-data-set-describe" class="nav-link" data-scroll-target="#exploring-a-data-set-describe">Exploring a data set: <code>describe</code></a></li>
-  <li><a href="#exploring-numeric-variables" id="toc-exploring-numeric-variables" class="nav-link" data-scroll-target="#exploring-numeric-variables">Exploring numeric variables</a></li>
-  <li><a href="#subsetting-observations" id="toc-subsetting-observations" class="nav-link" data-scroll-target="#subsetting-observations">Subsetting observations</a></li>
-  <li><a href="#exploring-text-string-variables" id="toc-exploring-text-string-variables" class="nav-link" data-scroll-target="#exploring-text-string-variables">Exploring text (string) variables</a></li>
-  <li><a href="#exploring-categorical-variables" id="toc-exploring-categorical-variables" class="nav-link" data-scroll-target="#exploring-categorical-variables">Exploring categorical variables</a></li>
-  <li><a href="#exploring-categorical-variables-1" id="toc-exploring-categorical-variables-1" class="nav-link" data-scroll-target="#exploring-categorical-variables-1">Exploring categorical variables</a></li>
-  <li><a href="#commenting-do-files" id="toc-commenting-do-files" class="nav-link" data-scroll-target="#commenting-do-files">Commenting do-files</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -225,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploring data in Stata</h1>
+<h1 class="title">Unique ID and duplicates</h1>
 </div>
 
 
@@ -254,214 +242,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In the last tutorial, we learned some Stata basics. We are going to continue with the basics in a more “Stata” friendly way. Let’s start by loading our dataset <code>fake_scores.dta</code>. You can find this dataset in the repository, or download directly it from <a href="https://github.com/RRMaximiliano/edu-harvard-programming/blob/master/files/data/fake_scores.dta">here</a>.</p>
-<div class="cell" data-collectcode="true">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"../files/data/fake_scores.dta"</span>, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="viewing-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="viewing-a-dataset">Viewing a dataset</h2>
-<section id="useful-commands-to-explore-data-sets" class="level3">
-<h3 class="anchored" data-anchor-id="useful-commands-to-explore-data-sets">Useful commands to explore data sets</h3>
-<p>As we explore variables of different types, we will learn how to use the following Stata commands:</p>
+<p>Now, Let’s try to thoroughly understand datasets right after their importation. The exploration process is initiated by pinpointing two pivotal elements:</p>
 <ul>
-<li><code>browse</code>: See all data in spreadsheet format</li>
-<li><code>summarize</code>: Basic statistics for numeric variables</li>
-<li><code>describe</code>: List of all variables in the data set in memory</li>
-<li><code>codebook</code>: List of all variables in the data set in memory</li>
-<li><code>tabulate</code>: Show a frequency table</li>
-<li><code>histogram</code>: Visualize the distribution of a continuous or discrete variable</li>
-<li><code>graph bar</code>: Visualize continuous variables over discrete or categorical variables</li>
-<li><code>graph pie</code>: Visualize groups in a categorical variable</li>
+<li>The unit of observation and a unique, fully identifying ID variable.</li>
+<li>The former refers to the entity or object being described by the dataset, whereas the latter distinguishes each observation uniquely, ensuring no duplicates or missing entries exist.</li>
 </ul>
-</section>
-<section id="exploring-a-data-set" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-a-data-set">Exploring a data set</h3>
-<ul>
-<li>The first command we will use to explore our data set today is <code>browse</code></li>
-<li>Another very useful command is <code>summarize</code></li>
-<li>It can be used to display basic statistics for the entire dataset or for some variables and observations</li>
-</ul>
-<p>Let’s use <code>summarize</code> to see descriptive statistics for the entire dataset.</p>
-<div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>...
-. summarize
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-      course |          0
-     student |          0
-   studentid |         96        12.5    6.958524          1         24
-       score |         96    46.21875     29.2093          0         99
-concentrat~n |          0
-
-. 
-...</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Unique ID">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Unique ID
 </div>
 </div>
-</section>
-<section id="exploring-a-data-set-describe" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-a-data-set-describe">Exploring a data set: <code>describe</code></h3>
-<ul>
-<li>The next command we will use is called <code>describe</code></li>
-<li>This command is used to view metadata, that is, data about the data</li>
-</ul>
-<div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>...
-. describe
-
-Contains data from ../files/data/fake_scores.dta
- Observations:            96                  
-    Variables:             5                  10 Feb 2024 17:56
--------------------------------------------------------------------------------
-Variable      Storage   Display    Value
-    name         type    format    label      Variable label
--------------------------------------------------------------------------------
-course          str7    %-9s                  
-student         str9    %-9s                  
-studentid       double  %10.0g                
-score           double  %10.0g                
-concentration   str4    %-9s                  
--------------------------------------------------------------------------------
-Sorted by: 
-
-. 
-...</code></pre>
+<div class="callout-body-container callout-body">
+<p>A unique identifier plays a critical role in maintaining the integrity of the dataset. It prevents the overrepresentation of any data point and facilitates the seamless merging of various datasets, enhancing the breadth of analysis. Identifying the dataset’s unit of observation alongside its ID variable lays the groundwork for a comprehensive examination.</p>
 </div>
 </div>
-<p><code>describe</code> is particularly useful to identify types of variables.</p>
-</section>
-<section id="exploring-numeric-variables" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-numeric-variables">Exploring numeric variables</h3>
-<p>Based on what we saw in the result for <code>describe</code>, let’s take a look at how we can see information about them.</p>
-<div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> <span class="kw">score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>...
-. codebook score
-
--------------------------------------------------------------------------------
-score                                                               (unlabeled)
--------------------------------------------------------------------------------
-
-                  Type: Numeric (double)
-
-                 Range: [0,99]                        Units: 1
-         Unique values: 62                        Missing .: 0/96
-
-                  Mean: 46.2188
-             Std. dev.: 29.2093
-
-           Percentiles:     10%       25%       50%       75%       90%
-                              6        24        47      70.5        89
-
-. 
-...</code></pre>
-</div>
-</div>
-</section>
-<section id="subsetting-observations" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting-observations">Subsetting observations</h3>
-<ul>
-<li>The expression <code>if</code> allows us to subset observations, that is, we can choose observations based on a logical condition.</li>
-</ul>
+<p>To ascertain the uniqueness and completeness of an ID variable, Stata has two commands: <code>isid</code> and <code>duplicates</code>. The <code>isid</code> command examines whether a set of variables can uniquely identify every observation in the dataset. On the other hand, the <code>duplicates</code> command identifies, labels, or removes duplicate records, thus ensuring the dataset’s cleanliness.</p>
+<p>Let’s use again our <code>fake_scores</code> dataset from our last two tutorials. Now, to verify if <code>studentid</code> serves as a unique identifier, one could use:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>browse <span class="kw">if</span> <span class="fu">missing</span>(<span class="kw">score</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>* Load your dataset</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"fake_scores.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>* Check <span class="kw">if</span> studentid uniquely identify the observations.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">isid</span> studentid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="exploring-text-string-variables" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-text-string-variables">Exploring text (string) variables</h3>
-<ul>
-<li>The process data set we are using contains two text variables: <code>student</code> and <code>course</code>.</li>
-</ul>
+<p>This should return you an error. Why? Because we have a long formatted dataset. Let’s include two variable then to verify if we have the correct level of analysis. Let’s run:</p>
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> student course</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">isid</span> course studentid </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>...
-. codebook student course
-
--------------------------------------------------------------------------------
-student                                                             (unlabeled)
--------------------------------------------------------------------------------
-
-                  Type: String (str9)
-
-         Unique values: 24                        Missing "": 0/96
-
-              Examples: "Ben"
-                        "Hwa"
-                        "Krista"
-                        "Nigel"
-
--------------------------------------------------------------------------------
-course                                                              (unlabeled)
--------------------------------------------------------------------------------
-
-                  Type: String (str7)
-
-         Unique values: 4                         Missing "": 0/96
-
-            Tabulation: Freq.  Value
-                           24  "EDU 001"
-                           24  "EDU 301"
-                           24  "EDU 302"
-                           24  "EDU 502"
-
-               Warning: Variable has embedded blanks.
+. isid course studentid 
 
 . 
 ...</code></pre>
 </div>
 </div>
-</section>
-<section id="exploring-categorical-variables" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-categorical-variables">Exploring categorical variables</h3>
-<p>As we noted when using <code>describe</code>, one way to identify categorical variables is when they have <em>value labels</em>.</p>
+<p>Now, you should not get an error. Since you got no “output” that means that we have a dataset at the level of course-student.</p>
+<p>Another way to look at whether we have the correct level of analysis is by using the <code>duplicates</code> command.</p>
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> concentration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="kw">report</span> studentid </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="fu">tag</span> studentid, <span class="kw">gen</span>(dup_name)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> dup_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>...
-. codebook concentration
+. duplicates report studentid 
 
--------------------------------------------------------------------------------
-concentration                                                       (unlabeled)
--------------------------------------------------------------------------------
+Duplicates in terms of studentid
 
-                  Type: String (str4)
+--------------------------------------
+   Copies | Observations       Surplus
+----------+---------------------------
+        4 |           96            72
+--------------------------------------
 
-         Unique values: 3                         Missing "": 0/96
+. duplicates tag studentid, gen(dup_name)
 
-            Tabulation: Freq.  Value
-                           44  "CIS"
-                           24  "EPPE"
-                           28  "HDLT"
+Duplicates in terms of studentid
 
-. 
-...</code></pre>
-</div>
-</div>
-</section>
-<section id="exploring-categorical-variables-1" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-categorical-variables-1">Exploring categorical variables</h3>
-<ul>
-<li>The command <code>tabulate</code> counts the number of observations that take each value in a categorical variable.</li>
-</ul>
-<div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> concentration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>...
-. tabulate concentration
+. tab dup_name
 
-concentrati |
-         on |      Freq.     Percent        Cum.
+   dup_name |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-        CIS |         44       45.83       45.83
-       EPPE |         24       25.00       70.83
-       HDLT |         28       29.17      100.00
+          3 |         96      100.00      100.00
 ------------+-----------------------------------
       Total |         96      100.00
 
@@ -469,19 +314,9 @@ concentrati |
 ...</code></pre>
 </div>
 </div>
-</section>
-<section id="commenting-do-files" class="level3">
-<h3 class="anchored" data-anchor-id="commenting-do-files">Commenting do-files</h3>
-<ul>
-<li>Comments are used to organize and explain the code so it is easier for you to read it and edit it later on.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>* Explore the categorical variables process_type</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> concentration <span class="co">// Simple tabulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Initially, <code>duplicates report</code> scrutinizes the dataset for duplicates of <code>studentid</code>, providing a detailed account of duplication. Following this, <code>duplicates tag</code> assigns a unique tag to each observation in the new variable <code>dup_name</code>, distinguishing between unique entries and various levels of duplication. Finally, <code>tab dup_name</code> tabulates these tags, offering a summary of the distribution of unique and duplicated <code>studentid</code> records.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

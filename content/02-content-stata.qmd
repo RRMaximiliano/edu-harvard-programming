@@ -38,7 +38,7 @@ knit_hooks$set(output = function(x, options) {
 
 ## Introduction
 
-In the last tutorial, we learned some Stata basics. We are going to continue with the basics in a more "Stata" friendly way. Let's start by loading our dataset `fake_scores.dta`. You can find this dataset in the repository, or download directly [here](https://github.com/RRMaximiliano/edu-harvard-programming/blob/master/files/data/fake_scores.dta).
+In the last tutorial, we learned some Stata basics. We are going to continue with the basics in a more "Stata" friendly way. Let's start by loading our dataset `fake_scores.dta`. You can find this dataset in the repository, or download directly it from [here](https://github.com/RRMaximiliano/edu-harvard-programming/blob/master/files/data/fake_scores.dta).
 
 
 ```{stata, collectcode = TRUE, results = "hide"}
