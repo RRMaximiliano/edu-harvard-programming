@@ -74,7 +74,7 @@
     "href": "content/01-content-stata.html#graphing",
     "title": "Introduction to Stata: The Basics",
     "section": "Graphing",
-    "text": "Graphing\nThe scatter command, for example, is used for scatterplots and line graphs.\n\n* Creating a simple scatterplot\nscatter pop death\n\n\n\n\nPop ~ Death"
+    "text": "Graphing\nThe scatter command, for example, is used for scatterplots and line graphs.\n\nscatter pop death\n\n\n\n\nPop ~ Death"
   },
   {
     "objectID": "content/01-content-stata.html#getting-help",

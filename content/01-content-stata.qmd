@@ -166,13 +166,12 @@ replace state = "MA" if state == "California"
 The `scatter` command, for example, is used for scatterplots and line graphs.
 
 
-```{stata, echo=1:2, results="hide"}
-* Creating a simple scatterplot
+```{stata, echo=1, results="hide"}
 scatter pop death
-quietly graph export scatter.svg, replace
+quietly graph export "temp/scatter.svg", replace
 ```
 
-![Pop ~ Death](scatter.svg)
+![Pop ~ Death](temp/scatter.svg)
 
 ## Getting Help
 
@@ -183,7 +182,3 @@ Stata has a comprehensive help system accessible through the `help` command.
 help summarize
 ```
 
-
-```{r cleanup, include=FALSE}
-unlink("scatter.svg")
-```
