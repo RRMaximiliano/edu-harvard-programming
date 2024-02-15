@@ -1,0 +1,304 @@
+---
+title: "Intro to LaTeX"
+author: "Rony Rodriguez-Ramirez"
+date: "2024-02-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Welcome to our introductory tutorial on LaTeX, with a focus on using Overleaf as our platform of choice. LaTeX is a powerful typesetting system used for creating professional-looking documents. Overleaf simplifies the process by providing an online, collaborative environment for LaTeX document editing and compilation. In this tutorial, we'll cover some fundamental aspects of LaTeX that are essential for creating well-structured academic and scientific documents.
+
+## Basic Document Structure
+
+A LaTeX document starts with the `\documentclass` command, defining the overall layout and style. For most academic documents, `article` class is sufficient. We then include packages with `\usepackage{}` to add functionality, such as improved spacing, better footnote handling, and advanced table features. Every LaTeX document begins with a preamble, where you define the type of document you're creating and the packages you'll need. Following the preamble, you use the `document` environment to contain the content of your document. Let's break down these components with more details.
+
+In LaTeX, an environment is a context within which certain formatting rules apply. Environments are used to group content that shares common formatting or behaves in a specific way, encapsulating it within a defined scope. Environments are marked by `\begin{}` and `\end{}` commands, which specify the name of the environment. The content placed between these commands follows the styling and behavior defined by the environment.
+
+Environments can dictate the structure and formatting of the content they enclose. For example, the `itemize` environment creates a bulleted list, while the `enumerate` environment creates a numbered list. We will talk more about these environments below but first:
+
+## Why Use Overleaf for LaTeX Projects?
+
+Overleaf is a web-based LaTeX editor that simplifies the process of writing, editing, and publishing academic and scientific documents. Here are several reasons why Overleaf stands out as a preferred choice for LaTeX users:
+
+- **Collaboration Made Easy**: Overleaf allows multiple users to work on a document simultaneously, making it ideal for collaborative projects.
+- **No Installation Required**: Being web-based, Overleaf requires no installation. You can access your projects from anywhere, on any computer, without worrying about LaTeX distributions.
+- **Rich Text Editor**: Overleaf provides a rich text editor that displays how your document will look in real-time, reducing the learning curve for beginners.
+- **Version Control**: Overleaf includes version control features, allowing you to track changes and revert to earlier versions of your document if needed.
+- **Template Library**: Overleaf offers a vast library of templates for journals, conferences, and universities, making it easy to start your document with the correct formatting guidelines.
+- **Pro Account Benefits**: With a Pro account, you gain access to additional features like track changes, advanced sharing options, and more.
+
+### Getting Started with Overleaf
+
+To begin using Overleaf, you'll need to create an account. Fortunately, since we are affiliated with Harvard University, you have access to a Pro account at no extra cost. This offers enhanced features that can significantly aid in your document creation process.
+
+1. **Create an Account**: Visit [Overleaf](https://www.overleaf.com) and sign up for an account.
+2. **Harvard Pro Account**: Check [Harvard's IT website](https://huit.harvard.edu) or add your harvard email to your account.
+
+Using Overleaf can significantly streamline your LaTeX document creation process, from initial drafting to final publication. Whether you're working on a research paper, thesis, or any other academic document, Overleaf's collaborative and user-friendly platform is designed to facilitate your work and enhance productivity.
+
+## The Preamble
+
+The preamble is the section of your LaTeX file before the `\begin{document}` command. It sets the stage for your document, specifying the document class, packages, and other configurations.
+
+### Document Class
+
+The `\documentclass` command defines the overall layout and style of your document. Common classes include `article`, `report`, `book`, and `beamer` for presentations. Options such as font size (`12pt`), paper size (`a4paper`), and document formatting (`twoside`) can be specified here.
+
+```{latex, eval = FALSE}
+\documentclass[12pt,a4paper]{article}
+```
+
+### Packages
+
+Packages extend LaTeX's capabilities, allowing for enhanced formatting, additional symbols, and improved functionality. You include a package with the `\usepackage{}` command. Some essential packages include:
+
+- `geometry` for page layout settings.
+- `graphicx` for including images.
+- `hyperref` for clickable links within your document.
+- `amsmath` for advanced mathematical formatting.
+
+After your `documentclass` in your first, you can include your packages as follows:
+
+```{latex, eval = FALSE}
+\usepackage{geometry, graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+```
+
+### The Document Environment
+
+After the preamble, the document environment begins with `\begin{document}` and ends with `\end{document}`. This is where you include the content of your document, such as text, figures, tables, and equations.
+
+### Basic Text Formatting
+
+- **Sections and Subsections**: Organize your document with `\section{}`, `\subsection{}`, and `\subsubsection{}` commands.
+- **Bold, Italic, and Underline**: Use `\textbf{}`, `\textit{}`, and `\underline{}` for text emphasis.
+- **Lists**: Create bulleted and numbered lists with `itemize` and `enumerate` environments.
+
+```{latex, eval = FALSE}
+\section{Introduction}
+This is an \textbf{important} concept.
+
+\begin{itemize}
+  \item First item
+  \item Second item
+\end{itemize}
+
+\begin{enumerate}
+  \item First numbered item
+  \item Second numbered item
+\end{enumerate}
+```
+
+So, as of now, we have the following latex code:
+
+```{latex, eval = FALSE}
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{geometry, graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\begin{document}
+\section{Introduction}
+This is an \textbf{important} concept.
+
+\begin{itemize}
+  \item First item
+  \item Second item
+\end{itemize}
+
+\begin{enumerate}
+  \item First numbered item
+  \item Second numbered item
+\end{enumerate}
+
+\end{document}
+``` 
+
+### Including Figures and Tables
+
+- **Figures**: Use the `figure` environment and `\includegraphics` to include images.
+- **Tables**: Use the `table` environment combined with `tabular` for basic tables. For more advanced tables, consider the `threeparttable` or `tabularx` packages.
+
+```{latex, eval = FALSE}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{image.png}
+  \caption{Sample figure}
+\end{figure}
+```
+
+This LaTeX code snippet is used to insert a figure into a document. The `\begin{figure}[ht]` command initiates a figure environment, with `[ht]` specifying that LaTeX should try to place the figure here (`h`) or at the top (`t`) of a page. The `\centering` command ensures that the figure is centered on the page. The `\includegraphics[width=0.5\textwidth]{image.png}` command is used to include the actual image file named `image.png` into the document, scaling it to half the width of the text column. Finally, the `\caption{Sample figure}` command adds a caption below the figure, titled "Sample figure", and the `\end{figure}` command concludes the figure environment. This structure is commonly used in academic and professional documents to include and properly format images.
+
+There are better ways to handling the inclusion of figures but, for now, we will skip them.
+
+#### Creating Tables with `threeparttable`
+
+Tables are a crucial part of scientific documents, providing a clear way to present data and results. The `threeparttable` package allows for adding notes beneath tables, ensuring they are the same width as the table itself.
+
+### Example Table
+
+```{latex, eval = FALSE}
+\begin{table}[H]
+  \centering
+  \begin{threeparttable}
+    \caption{Sample Table}
+    \begin{tabular}{cc}
+      \toprule
+      Header 1 & Header 2 \\
+      \midrule
+      Data 1   & Data 2   \\
+      Data 3   & Data 4   \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+      \small
+      \item Note: This is a sample note.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+```
+
+This LaTeX code snippet creates a table with a note section below it, centered on the page, using the `table` and `threeparttable` environments for structure and notes, respectively. The `table` environment is specified with `[H]` to position the table here in the text, overriding LaTeX's default floating behavior. Inside, the `threeparttable` environment is used to allow for adding notes that align with the width of the table. The table itself is created using the `tabular` environment with two centered columns (`cc`), and it utilizes the `booktabs` package commands (`\toprule`, `\midrule`, `\bottomrule`) to format its top, middle, and bottom lines for a cleaner look. The `\caption{Sample Table}` command adds a title above the table. Finally, the `tablenotes` environment, part of `threeparttable`, provides a section for notes related to the table, styled with `\small` for smaller text.
+
+- **Packages Required**: To successfully compile this code, the `float` package is needed for the `[H]` placement specifier, and the `threeparttable` and `booktabs` packages are necessary for the notes and enhanced table formatting, respectively.
+- **Purpose**: This setup is ideal for academic and scientific documents where tables require detailed explanations or notes for clarification, ensuring that all parts of the table are neatly organized and visually appealing.
+
+Expanding the tutorial to include sections on equations and bibliography management will provide users with essential skills for academic writing in LaTeX. Below are the proposed sections to be integrated into the R Markdown (`qmd`) tutorial.
+
+## Writing Equations in LaTeX
+
+\LaTeX is renowned for its ability to create beautifully formatted mathematical expressions and equations lol (Yes, I love LaTeX but I can be a pain sometimes). This section introduces the basics of writing equations in LaTeX.
+
+### Inline and Displayed Equations
+
+- **Inline Equations**: Use the dollar signs `$...$` to include mathematical content within text. For example, `$E=mc^2$` renders as $E=mc^2$ inline with your text. You can also use `\(E=mc^2\)` to render inline equations.
+  
+- **Displayed Equations**: For equations that should be centered and set apart from the text, use the double dollar signs `$$...$$` or the `\[...\]` syntax. For example,
+
+```{latex, eval = FALSE}
+  \[
+  \int_{a}^{b} f(x)\, dx = F(b) - F(a)
+  \]
+```
+
+- **Fractions and Square Roots**: Use `\frac{numerator}{denominator}` for fractions and `\sqrt{expression}` for square roots.
+- **Subscripts and Superscripts**: Use `_` for subscripts and `^` for superscripts.
+- **Matrices**: Enclose matrix elements in the `matrix`, `pmatrix`, or `bmatrix` environments within `\[...\]` to create matrices without or with parentheses/brackets.
+
+My preferred way is to use the `equation` environment. This will add a number to your equation that you can reference in your text. 
+
+```{latex, eval = FALSE}
+\begin{equation}
+Y = \alpha + \beta X + \varepsilon
+\end{equation}
+```
+
+## Managing Bibliographies in LaTeX
+
+LaTeX, combined with BibTeX or `biblatex`, offers powerful tools for citation management and bibliography creation, essential for academic writing.
+
+### Using BibTeX
+
+1. **Create a `.bib` File**: This file will store your references in a structured format. For example:
+
+```{bibtex, eval = FALSE}
+@book{knuth1984texbook,
+ title={The {TeX}book},
+ author={Knuth, Donald E},
+ year={1984},
+ publisher={Addison-Wesley}
+}
+```
+
+2. **Citing in Your Document**: Use the `\cite{}` command within your LaTeX document to cite references. For example, `\cite{knuth1984texbook}`.
+3. **The `thebibliography` Environment**: Alternatively, manually list references using `thebibliography` environment if not using BibTeX.
+
+Below, there is an example using `biblatex`. I will try to have more time to add a more relevant example (and reproducible!).
+
+### Using `biblatex` for Advanced Bibliography
+
+`biblatex` provides advanced features for bibliography management. Include it in your preamble with:
+
+```{latex, eval = FALSE}
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\addbibresource{references.bib}
+```
+
+- Replace `style=authoryear` with your desired citation style.
+- Use `\printbibliography` at the end of your document to display the bibliography.
+- Cite works with `\textcite{}` for inline citations or `\parencite{}` for parenthetical citations.
+
+### Example of Citing
+
+After referencing a work in your text using `\cite{}` or `\textcite{}`, compile your document twice to update citation links and bibliography.
+
+```{latex, eval = FALSE}
+As discussed by \textcite{knuth1984texbook}, LaTeX is an effective tool for document preparation, lol.
+```
+
+## Handling Special Characters in LaTeX
+
+LaTeX uses several characters for formatting and commands, which means they can't be used directly in your text without being interpreted by LaTeX. If you need to include these special characters in your document as regular text, you must use a backslash (`\`) before the character or use an alternative command.
+
+### List of Special Characters
+
+The following characters are considered special in LaTeX:
+
+- `#` - Used for parameters in macros. To display it, use `\#`.
+- `$` - Used to initiate and end math mode. To display it, use `\$`.
+- `%` - Used for comments. To display it, use `\%`.
+- `^` - Used for superscripts in math mode. To display it, use `\^{}`.
+- `&` - Used for tab alignment in tables. To display it, use `\&`.
+- `_` - Used for subscripts in math mode. To display it, use `\_`.
+- `{` and `}` - Used for grouping content. To display these, use `\{` and `\}`.
+- `~` - Represents a non-breaking space. To display it, use `\textasciitilde` or `\~{}`.
+- `\` - Used to introduce commands. To display the backslash itself, use `\textbackslash` since `\\` is used for line breaks.
+
+### Example Usage
+
+Here is how you can include these special characters in a LaTeX document:
+
+```{latex, eval = FALSE}
+\documentclass{article}
+\begin{document}
+
+Special characters in LaTeX include \#, \$, \%, \^{}, \&, \_, \{, \}, \textasciitilde, and \textbackslash.
+
+\end{document}
+```
+
+::: {.callout-tip title="Why It Matters!"}
+Understanding how to properly include special characters in your LaTeX documents is essential for avoiding syntax errors and ensuring that your text is displayed as intended. This knowledge is particularly useful when typing mathematical expressions, programming code, or when you need to include symbols that are part of LaTeX’s syntax in your text.
+
+By mastering the use of special characters, you enhance the readability and precision of your LaTeX documents, whether you're drafting academic papers, technical reports, or any other type of document that requires meticulous formatting.
+:::
+
+
+## Conclusion
+
+This brief tutorial introduced you to LaTeX using Overleaf, focusing on document structure, table creation with `threeparttable`, and customization with colors. LaTeX's extensive package ecosystem and precise formatting capabilities make it ideal for academic and scientific writing. For hands-on practice, we recommend using Overleaf for its ease of use and collaborative features.
+
+
+:::{.callout-tip title="Quarto template that uses latex en las bambalinas!"}
+
+To wrap up this tutorial, I've prepared a fully-fledged LaTeX article-style template that incorporates all the elements discussed, including document structure, equations, bibliography, and more, tailored for use with R and Quarto. This template serves as a practical example to help you jumpstart your document creation process, combining the power of LaTeX with the flexibility of R for dynamic content generation.
+
+### Accessing the Template
+
+You can access and download the template directly from the following link: [LaTeX Article Template](https://posit.cloud/content/4785740). This template is hosted on Posit Cloud (formerly RStudio Cloud), ensuring easy access and the ability to open and work with the template directly in your browser.
+
+### Using the Template
+
+Once you've accessed the template, here's how to get started:
+
+1. **Open the Template**: Click on the link to view the template. If prompted, sign in or create a free Posit Cloud account.
+2. **Copy the Project**: Make a copy of the project to your own Posit Cloud account, allowing you to edit and compile the document.
+3. **Explore and Customize**: The template is fully editable. Familiarize yourself with its structure and contents, and feel free to modify it to suit your project's needs.
+4. **Compile and Download**: Use Posit Cloud's integrated Quarto and LaTeX tools to compile the document into a PDF. Just click the render thingy! :)
+:::

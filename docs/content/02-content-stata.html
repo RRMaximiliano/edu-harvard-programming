@@ -129,6 +129,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="../content/01-content-stata.html" rel="" target="" aria-current="page">
  <span class="menu-text">Stata tutorials</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/01-content-latex.html" rel="" target="">
+ <span class="menu-text">LaTeX tutorials</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
       <i class="bi bi-github" role="img">
@@ -286,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . summarize
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -298,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 concentrat~n |          0
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 </section>
@@ -311,7 +315,7 @@ concentrat~n |          0
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . describe
 
 Contains data from ../files/data/fake_scores.dta
@@ -330,7 +334,7 @@ concentration   str4    %-9s
 Sorted by: 
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 <p><code>describe</code> is particularly useful to identify types of variables.</p>
@@ -341,7 +345,7 @@ Sorted by:
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> <span class="kw">score</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . codebook score
 
 -------------------------------------------------------------------------------
@@ -360,7 +364,7 @@ score                                                               (unlabeled)
                               6        24        47      70.5        89
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 </section>
@@ -381,7 +385,7 @@ score                                                               (unlabeled)
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> student course</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . codebook student course
 
 -------------------------------------------------------------------------------
@@ -414,7 +418,7 @@ course                                                              (unlabeled)
                Warning: Variable has embedded blanks.
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 </section>
@@ -424,7 +428,7 @@ course                                                              (unlabeled)
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> concentration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . codebook concentration
 
 -------------------------------------------------------------------------------
@@ -441,7 +445,7 @@ concentration                                                       (unlabeled)
                            28  "HDLT"
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 </section>
@@ -453,7 +457,7 @@ concentration                                                       (unlabeled)
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> concentration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . tabulate concentration
 
 concentrati |
@@ -466,7 +470,7 @@ concentrati |
       Total |         96      100.00
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 </section>

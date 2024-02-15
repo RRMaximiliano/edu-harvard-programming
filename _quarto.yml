@@ -21,6 +21,8 @@ website:
         file: content/01-content.qmd
       - text: "Stata tutorials"
         file: content/01-content-stata.qmd
+      - text: "LaTeX tutorials"
+        file: content/01-content-latex.qmd        
       - icon: github
         menu:
           - text: Source Code
@@ -74,8 +76,18 @@ website:
           - text: "2: Data exploration"
             file: content/02-content-stata.qmd    
           - text: "2: Unique IDs and Duplicates"
-            file: content/03-content-stata.qmd            
+            file: content/03-content-stata.qmd
             
+    - title: "LaTeX Content"
+      style: "docked"
+      search: false
+      background: dark
+      contents:
+        - section: "Content"
+          contents:
+          - text: "1: Intro to LaTeX"
+            file: content/01-content-latex.qmd
+
 format:
   html:
     grid: 

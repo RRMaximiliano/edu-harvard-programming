@@ -129,6 +129,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="../content/01-content-stata.html" rel="" target="" aria-current="page">
  <span class="menu-text">Stata tutorials</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../content/01-content-latex.html" rel="" target="">
+ <span class="menu-text">LaTeX tutorials</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
       <i class="bi bi-github" role="img">
@@ -273,11 +277,11 @@ Unique ID
 <div class="cell" data-output.lines="[-1,-2,-3,-4,-5]">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">isid</span> course studentid </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . isid course studentid 
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 <p>Now, you should not get an error. Since you got no “output” that means that we have a dataset at the level of course-student.</p>
@@ -287,7 +291,7 @@ Unique ID
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="fu">tag</span> studentid, <span class="kw">gen</span>(dup_name)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> dup_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>...
+<pre><code>
 . duplicates report studentid 
 
 Duplicates in terms of studentid
@@ -311,7 +315,7 @@ Duplicates in terms of studentid
       Total |         96      100.00
 
 . 
-...</code></pre>
+</code></pre>
 </div>
 </div>
 <p>Initially, <code>duplicates report</code> scrutinizes the dataset for duplicates of <code>studentid</code>, providing a detailed account of duplication. Following this, <code>duplicates tag</code> assigns a unique tag to each observation in the new variable <code>dup_name</code>, distinguishing between unique entries and various levels of duplication. Finally, <code>tab dup_name</code> tabulates these tags, offering a summary of the distribution of unique and duplicated <code>studentid</code> records.</p>
